@@ -1,0 +1,10 @@
+build/
+*.log
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.gif
+*.tmp
+*.user
+.vs/
