@@ -14,6 +14,8 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QMessageBox>
+#include <QPainter>
+#include <QPainterPath>
 #include <QPushButton>
 #include <QInputDialog>
 #include <QScrollArea>
@@ -46,6 +48,61 @@ void clearLayoutItems(QLayout *layout)
         delete item;
     }
 }
+
+class TileCheckBox : public QCheckBox {
+public:
+    explicit TileCheckBox(const QString &text, QWidget *parent = nullptr)
+        : QCheckBox(text, parent)
+    {
+        setCursor(Qt::PointingHandCursor);
+        setMinimumSize(132, 38);
+        setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    }
+
+protected:
+    bool hitButton(const QPoint &pos) const override
+    {
+        return rect().contains(pos);
+    }
+
+    void paintEvent(QPaintEvent *) override
+    {
+        QPainter painter(this);
+        painter.setRenderHint(QPainter::Antialiasing);
+
+        const auto tileRect = rect().adjusted(1, 1, -1, -1);
+        const QColor borderColor = isChecked() ? QColor("#2563eb") : QColor("#d6dee8");
+        const QColor fillColor = isChecked() ? QColor("#dbeafe") : QColor("#f8fafc");
+        const QColor hoverFillColor = isChecked() ? QColor("#dbeafe") : QColor("#edf6ff");
+
+        painter.setPen(QPen(borderColor, isChecked() ? 2 : 1));
+        painter.setBrush(underMouse() ? hoverFillColor : fillColor);
+        painter.drawRoundedRect(tileRect, 6, 6);
+
+        const QRect boxRect(10, (height() - 17) / 2, 17, 17);
+        painter.setPen(QPen(isChecked() ? QColor("#2563eb") : QColor("#94a3b8"), isChecked() ? 2 : 1));
+        painter.setBrush(Qt::white);
+        painter.drawRoundedRect(boxRect, 3, 3);
+
+        if (isChecked()) {
+            QPen checkPen(QColor("#dc2626"), 2.5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+            painter.setPen(checkPen);
+            QPainterPath checkPath;
+            checkPath.moveTo(boxRect.left() + 4, boxRect.center().y());
+            checkPath.lineTo(boxRect.left() + 8, boxRect.bottom() - 4);
+            checkPath.lineTo(boxRect.right() - 3, boxRect.top() + 4);
+            painter.drawPath(checkPath);
+        }
+
+        QFont textFont = painter.font();
+        textFont.setPointSize(10);
+        painter.setFont(textFont);
+        painter.setPen(isChecked() ? QColor("#1d4ed8") : QColor("#0f172a"));
+        painter.drawText(QRect(boxRect.right() + 8, 0, width() - boxRect.right() - 14, height()),
+                         Qt::AlignVCenter | Qt::AlignLeft,
+                         text());
+    }
+};
 
 }
 
@@ -172,8 +229,8 @@ void MainWindow::buildUi()
     secondCategoryArea->setMaximumHeight(210);
     m_secondCategoryList = new QWidget();
     m_secondCategoryListLayout = new QVBoxLayout(m_secondCategoryList);
-    m_secondCategoryListLayout->setContentsMargins(8, 8, 8, 8);
-    m_secondCategoryListLayout->setSpacing(8);
+    m_secondCategoryListLayout->setContentsMargins(6, 6, 6, 6);
+    m_secondCategoryListLayout->setSpacing(6);
     secondCategoryArea->setWidget(m_secondCategoryList);
     m_addSecondCategory = new QPushButton(QStringLiteral("新增二级类目"));
     m_addSecondCategory->setProperty("role", "secondary");
@@ -608,11 +665,11 @@ void MainWindow::rebuildCategoryMatrix(const QVector<QStringList> &checkedPaths)
     const auto currentSecondCategories = m_secondCategoriesByFirst.value(firstCategory);
     auto *rowLayout = new QHBoxLayout();
     rowLayout->setContentsMargins(0, 0, 0, 0);
-    rowLayout->setSpacing(6);
+    rowLayout->setSpacing(8);
     int columnCount = 0;
 
     for (const auto &secondCategory : currentSecondCategories) {
-        auto *check = new QCheckBox(secondCategory);
+        auto *check = new TileCheckBox(secondCategory);
         check->setProperty("secondCategory", secondCategory);
         check->setChecked(false);
         check->setObjectName(QStringLiteral("tileCheck"));
@@ -631,7 +688,7 @@ void MainWindow::rebuildCategoryMatrix(const QVector<QStringList> &checkedPaths)
             m_secondCategoryListLayout->addLayout(rowLayout);
             rowLayout = new QHBoxLayout();
             rowLayout->setContentsMargins(0, 0, 0, 0);
-            rowLayout->setSpacing(6);
+            rowLayout->setSpacing(8);
             columnCount = 0;
         }
     }
@@ -654,8 +711,9 @@ void MainWindow::addSecondCategory()
         return;
     }
 
-    const auto currentItem = itemFromEditor();
+    auto currentItem = itemFromEditor();
     categories.push_back(name);
+    currentItem.categoryPaths.push_back({firstCategory, name});
     m_store.secondCategoriesByFirst() = m_secondCategoriesByFirst;
     m_store.save();
     rebuildCategoryMatrix(currentItem.categoryPaths);
