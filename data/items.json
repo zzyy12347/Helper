@@ -1,0 +1,114 @@
+{
+    "items": [
+        {
+            "categories": [
+                "召唤物",
+                "地府"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "地府"
+                ],
+                [
+                    "召唤物",
+                    "中级"
+                ]
+            ],
+            "name": "僵尸",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 88,
+                    "shopId": "1001",
+                    "showcaseId": "1"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 76,
+                    "shopId": "1002",
+                    "showcaseId": "2"
+                },
+                {
+                    "outOfStock": true,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 70,
+                    "shopId": "1003",
+                    "showcaseId": "3"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "地府"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "地府"
+                ]
+            ],
+            "name": "幽灵",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 66,
+                    "shopId": "2001",
+                    "showcaseId": "1"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 59,
+                    "shopId": "2002",
+                    "showcaseId": "2"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "地府"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "地府"
+                ],
+                [
+                    "召唤物",
+                    "中级"
+                ]
+            ],
+            "name": "野鬼",
+            "offers": [
+            ]
+        }
+    ],
+    "secondCategoriesByFirst": {
+        "召唤物": [
+            "地府",
+            "中级",
+            "塔怪",
+            "高级"
+        ],
+        "家具": [
+            "二级家具",
+            "三级家具"
+        ],
+        "药品/烹饪": [
+            "三药",
+            "烹饪",
+            "红蓝碗"
+        ]
+    }
+}

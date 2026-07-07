@@ -4,9 +4,11 @@
 #include <QApplication>
 #include <QCheckBox>
 #include <QComboBox>
+#include <QCoreApplication>
 #include <QDateTime>
 #include <QDialog>
 #include <QDoubleValidator>
+#include <QDir>
 #include <QFormLayout>
 #include <QFrame>
 #include <QHeaderView>
@@ -20,6 +22,7 @@
 #include <QInputDialog>
 #include <QScrollArea>
 #include <QSet>
+#include <QFileInfo>
 #include <QSignalBlocker>
 #include <QStandardPaths>
 #include <QStatusBar>
@@ -35,6 +38,26 @@ const QStringList kFirstCategories = {
     QStringLiteral("药品/烹饪"),
     QStringLiteral("家具"),
 };
+
+QString trackedDataFilePath()
+{
+    const QString fallbackPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/items.json";
+    const QStringList startPaths = {QCoreApplication::applicationDirPath(), QDir::currentPath()};
+
+    for (const auto &startPath : startPaths) {
+        QDir dir(startPath);
+        while (true) {
+            if (QFileInfo::exists(dir.filePath("CMakeLists.txt")) && QDir(dir.filePath("src")).exists()) {
+                return dir.filePath("data/items.json");
+            }
+            if (!dir.cdUp()) {
+                break;
+            }
+        }
+    }
+
+    return fallbackPath;
+}
 
 void clearLayoutItems(QLayout *layout)
 {
@@ -108,7 +131,7 @@ protected:
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , m_store(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/items.json")
+    , m_store(trackedDataFilePath())
 {
     buildUi();
     connectSignals();
