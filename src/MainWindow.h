@@ -32,7 +32,7 @@ private:
     void addSecondCategory();
     void openNewItemEditor();
     void openEditorForCurrentResult();
-    void openEditorForItem(const QString &itemName);
+    void openEditorForOffer(const QString &itemName, const QString &shopId);
     void hideEditor();
     void saveEditedItem();
     void deleteEditedItem();
@@ -71,4 +71,6 @@ private:
     QPushButton *m_markInStock = nullptr;
     bool m_category3ShowsItems = false;
     QMap<QString, QStringList> m_secondCategoriesByFirst;
+    QString m_editingItemName;
+    QString m_editingShopId;
 };

@@ -39,6 +39,7 @@ public:
 
     void addOrUpdateItem(const ItemRecord &item);
     bool removeItem(const QString &name);
+    bool removeOffer(const QString &itemName, const QString &shopId);
     bool setOfferStock(const QString &itemName, const QString &shopId, bool outOfStock);
     bool refreshExpiredStock();
 

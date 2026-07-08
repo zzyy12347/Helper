@@ -227,7 +227,25 @@ void DataStore::addOrUpdateItem(const ItemRecord &item)
 {
     for (auto &existing : m_items) {
         if (existing.name.compare(item.name, Qt::CaseInsensitive) == 0) {
-            existing = item;
+            existing.name = item.name;
+            if (!item.categoryPaths.isEmpty()) {
+                existing.categoryPaths = item.categoryPaths;
+            }
+
+            for (const auto &incomingOffer : item.offers) {
+                bool updated = false;
+                for (auto &existingOffer : existing.offers) {
+                    if (existingOffer.shopId == incomingOffer.shopId) {
+                        existingOffer = incomingOffer;
+                        updated = true;
+                        break;
+                    }
+                }
+
+                if (!updated) {
+                    existing.offers.push_back(incomingOffer);
+                }
+            }
             return;
         }
     }
@@ -239,6 +257,29 @@ bool DataStore::removeItem(const QString &name)
     for (int i = 0; i < m_items.size(); ++i) {
         if (m_items.at(i).name == name) {
             m_items.removeAt(i);
+            return true;
+        }
+    }
+    return false;
+}
+
+bool DataStore::removeOffer(const QString &itemName, const QString &shopId)
+{
+    for (int itemIndex = 0; itemIndex < m_items.size(); ++itemIndex) {
+        auto &item = m_items[itemIndex];
+        if (item.name.compare(itemName, Qt::CaseInsensitive) != 0) {
+            continue;
+        }
+
+        for (int offerIndex = 0; offerIndex < item.offers.size(); ++offerIndex) {
+            if (item.offers.at(offerIndex).shopId != shopId) {
+                continue;
+            }
+
+            item.offers.removeAt(offerIndex);
+            if (item.offers.isEmpty()) {
+                m_items.removeAt(itemIndex);
+            }
             return true;
         }
     }

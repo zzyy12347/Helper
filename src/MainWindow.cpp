@@ -792,6 +792,8 @@ void MainWindow::refreshResults()
 
 void MainWindow::openNewItemEditor()
 {
+    m_editingItemName.clear();
+    m_editingShopId.clear();
     m_editorTitle->setText(QStringLiteral("新增条目"));
     m_itemName->clear();
     {
@@ -813,20 +815,23 @@ void MainWindow::openNewItemEditor()
 void MainWindow::openEditorForCurrentResult()
 {
     const int row = m_results->currentRow();
-    if (row < 0 || !m_results->item(row, 0)) {
+    if (row < 0 || !m_results->item(row, 0) || !m_results->item(row, 1)) {
         showMessage(QStringLiteral("请先选中一条搜索结果。"));
         return;
     }
 
-    openEditorForItem(m_results->item(row, 0)->text());
+    openEditorForOffer(m_results->item(row, 0)->text(), m_results->item(row, 1)->text());
 }
 
-void MainWindow::openEditorForItem(const QString &itemName)
+void MainWindow::openEditorForOffer(const QString &itemName, const QString &shopId)
 {
     for (const auto &item : m_store.items()) {
         if (item.name != itemName) {
             continue;
         }
+
+        m_editingItemName = item.name;
+        m_editingShopId = shopId;
 
         m_editorTitle->setText(QStringLiteral("修改条目"));
         m_itemName->setText(item.name);
@@ -835,8 +840,20 @@ void MainWindow::openEditorForItem(const QString &itemName)
             rebuildCategoryMatrix(item.categoryPaths);
         }
 
-        if (!item.offers.isEmpty()) {
-            const auto &offer = item.offers.first();
+        const ShopOffer *selectedOffer = nullptr;
+        for (const auto &offer : item.offers) {
+            if (offer.shopId == shopId) {
+                selectedOffer = &offer;
+                break;
+            }
+        }
+        if (!selectedOffer && !item.offers.isEmpty()) {
+            selectedOffer = &item.offers.first();
+            m_editingShopId = selectedOffer->shopId;
+        }
+
+        if (selectedOffer) {
+            const auto &offer = *selectedOffer;
             m_shopId->setText(offer.shopId);
             m_showcaseId->setText(offer.showcaseId);
             m_price->setText(QString::number(offer.price, 'f', 2));
@@ -875,6 +892,12 @@ void MainWindow::saveEditedItem()
         return;
     }
 
+    const QString savedShopId = item.offers.isEmpty() ? QString() : item.offers.first().shopId;
+    if (!m_editingItemName.isEmpty() && !m_editingShopId.isEmpty()
+        && (m_editingItemName.compare(item.name, Qt::CaseInsensitive) != 0 || savedShopId != m_editingShopId)) {
+        m_store.removeOffer(m_editingItemName, m_editingShopId);
+    }
+
     m_store.addOrUpdateItem(item);
     if (!m_store.save()) {
         showMessage(QStringLiteral("保存失败，请检查数据文件权限。"));
@@ -884,6 +907,8 @@ void MainWindow::saveEditedItem()
     refreshCategoryCombos();
     refreshResults();
     hideEditor();
+    m_editingItemName.clear();
+    m_editingShopId.clear();
     showMessage(QStringLiteral("已保存。"));
 }
 
@@ -898,11 +923,17 @@ void MainWindow::deleteEditedItem()
         return;
     }
 
-    m_store.removeItem(name);
+    if (!m_editingItemName.isEmpty() && !m_editingShopId.isEmpty()) {
+        m_store.removeOffer(m_editingItemName, m_editingShopId);
+    } else {
+        m_store.removeItem(name);
+    }
     m_store.save();
     refreshCategoryCombos();
     refreshResults();
     hideEditor();
+    m_editingItemName.clear();
+    m_editingShopId.clear();
 }
 
 void MainWindow::markSelectedOffer(bool outOfStock)
