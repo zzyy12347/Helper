@@ -37,12 +37,20 @@
             "name": "药",
             "offers": [
                 {
-                    "outOfStock": false,
-                    "outOfStockCount": 0,
-                    "outOfStockMarkedAt": "",
+                    "outOfStock": true,
+                    "outOfStockCount": 1,
+                    "outOfStockMarkedAt": "2026-07-08T06:17:50Z",
                     "price": 13333,
                     "shopId": "448",
                     "showcaseId": "10"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 13888,
+                    "shopId": "791",
+                    "showcaseId": "6"
                 }
             ]
         },
@@ -66,6 +74,60 @@
                     "price": 9999,
                     "shopId": "593",
                     "showcaseId": "8"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "地府"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "地府"
+                ],
+                [
+                    "召唤物",
+                    "中级"
+                ]
+            ],
+            "name": "僵尸",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 8888,
+                    "shopId": "652",
+                    "showcaseId": "8"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "中级"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "中级"
+                ],
+                [
+                    "召唤物",
+                    "北具"
+                ]
+            ],
+            "name": "白熊",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 8999,
+                    "shopId": "384",
+                    "showcaseId": "5"
                 }
             ]
         }

@@ -191,6 +191,12 @@ void MainWindow::buildUi()
         QStringLiteral("橱窗号"),
         QStringLiteral("价格"),
     });
+    m_results->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    for (int column = 0; column < m_results->columnCount(); ++column) {
+        if (auto *headerItem = m_results->horizontalHeaderItem(column)) {
+            headerItem->setTextAlignment((column == 3 ? Qt::AlignRight : Qt::AlignLeft) | Qt::AlignVCenter);
+        }
+    }
     m_results->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     m_results->verticalHeader()->setVisible(false);
     m_results->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -234,6 +240,7 @@ void MainWindow::buildUi()
     m_editDialog = new QDialog(this);
     m_editDialog->setObjectName(QStringLiteral("editDialog"));
     m_editDialog->setWindowTitle(QStringLiteral("编辑条目"));
+    m_editDialog->setWindowModality(Qt::WindowModal);
     m_editDialog->resize(560, 600);
     m_editDialog->setMinimumSize(520, 540);
     auto *editLayout = new QVBoxLayout(m_editDialog);
@@ -503,7 +510,13 @@ void MainWindow::connectSignals()
 {
     connect(m_alwaysOnTop, &QCheckBox::toggled, this, [this](bool checked) {
         setWindowFlag(Qt::WindowStaysOnTopHint, checked);
+        m_editDialog->setWindowFlag(Qt::WindowStaysOnTopHint, checked);
         show();
+        if (m_editDialog->isVisible()) {
+            m_editDialog->show();
+            m_editDialog->raise();
+            m_editDialog->activateWindow();
+        }
     });
 
     connect(m_category1, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this] {
@@ -780,12 +793,23 @@ void MainWindow::refreshResults()
     m_results->setRowCount(rows.size());
     for (int row = 0; row < rows.size(); ++row) {
         const auto &entry = rows.at(row);
-        m_results->setItem(row, 0, new QTableWidgetItem(entry.itemName));
-        m_results->setItem(row, 1, new QTableWidgetItem(entry.shopId));
-        m_results->setItem(row, 2, new QTableWidgetItem(entry.showcaseId));
-        auto *priceItem = new QTableWidgetItem(QString::number(entry.price, 'f', 2));
-        priceItem->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-        m_results->setItem(row, 3, priceItem);
+        auto addResultItem = [this, row](int column, const QString &text, Qt::Alignment alignment) {
+            auto *item = new QTableWidgetItem(text);
+            item->setTextAlignment(alignment | Qt::AlignVCenter);
+            m_results->setItem(row, column, item);
+        };
+        addResultItem(0, entry.itemName, Qt::AlignLeft);
+        addResultItem(1, entry.shopId, Qt::AlignLeft);
+        addResultItem(2, entry.showcaseId, Qt::AlignLeft);
+        addResultItem(3, QString::number(entry.price, 'f', 2), Qt::AlignRight);
+        if (entry.outOfStock) {
+            for (int column = 0; column < m_results->columnCount(); ++column) {
+                if (auto *item = m_results->item(row, column)) {
+                    item->setBackground(QColor("#fee2e2"));
+                    item->setForeground(QColor("#7f1d1d"));
+                }
+            }
+        }
         m_results->setRowHeight(row, 34);
     }
 }
@@ -806,6 +830,7 @@ void MainWindow::openNewItemEditor()
     m_price->clear();
     m_stock->setCurrentText(QStringLiteral("有货"));
     m_deleteItem->setEnabled(false);
+    m_editDialog->setWindowFlag(Qt::WindowStaysOnTopHint, m_alwaysOnTop->isChecked());
     m_editDialog->show();
     m_editDialog->raise();
     m_editDialog->activateWindow();
@@ -865,6 +890,7 @@ void MainWindow::openEditorForOffer(const QString &itemName, const QString &shop
             m_stock->setCurrentText(QStringLiteral("有货"));
         }
         m_deleteItem->setEnabled(true);
+        m_editDialog->setWindowFlag(Qt::WindowStaysOnTopHint, m_alwaysOnTop->isChecked());
         m_editDialog->show();
         m_editDialog->raise();
         m_editDialog->activateWindow();
