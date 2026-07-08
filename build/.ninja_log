@@ -1,0 +1,19 @@
+# ninja log v7
+17	2985	8051776280782165	ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
+17	2985	8051776280782165	ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
+17	2985	8051776280782165	D:/AIWork/Helper/build/ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
+17	2985	8051776280782165	D:/AIWork/Helper/build/ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
+2991	5079	8051776281238957	CMakeFiles/ItemShopFinder.dir/src/main.cpp.obj	8bb01a85b91c2225
+2988	5352	8051776281208955	CMakeFiles/ItemShopFinder.dir/ItemShopFinder_autogen/mocs_compilation.cpp.obj	3cf99dac204bb24a
+2998	6104	8051776281318973	CMakeFiles/ItemShopFinder.dir/src/DataStore.cpp.obj	7659e9e8c66bf2af
+2994	6992	8051776281278952	CMakeFiles/ItemShopFinder.dir/src/MainWindow.cpp.obj	6c64aaeecaaea2f0
+6993	7196	8051776321264934	ItemShopFinder.exe	9f2e2d0f9591e020
+26	2805	8051810573509157	ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
+26	2805	8051810573509157	ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
+26	2805	8051810573509157	D:/AIWork/Helper/build/ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
+26	2805	8051810573509157	D:/AIWork/Helper/build/ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
+2864	5408	8051810574452559	CMakeFiles/ItemShopFinder.dir/src/main.cpp.obj	8bb01a85b91c2225
+2806	5412	8051810573862454	CMakeFiles/ItemShopFinder.dir/ItemShopFinder_autogen/mocs_compilation.cpp.obj	3cf99dac204bb24a
+2872	6020	8051810574522552	CMakeFiles/ItemShopFinder.dir/src/DataStore.cpp.obj	7659e9e8c66bf2af
+2868	6910	8051810574492566	CMakeFiles/ItemShopFinder.dir/src/MainWindow.cpp.obj	6c64aaeecaaea2f0
+6910	7377	8051810614912852	ItemShopFinder.exe	9f2e2d0f9591e020
