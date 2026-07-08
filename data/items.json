@@ -37,12 +37,12 @@
             "name": "药",
             "offers": [
                 {
-                    "outOfStock": true,
+                    "outOfStock": false,
                     "outOfStockCount": 1,
-                    "outOfStockMarkedAt": "2026-07-08T06:17:50Z",
+                    "outOfStockMarkedAt": "",
                     "price": 13333,
                     "shopId": "448",
-                    "showcaseId": "10"
+                    "showcaseId": ""
                 },
                 {
                     "outOfStock": false,
@@ -50,16 +50,36 @@
                     "outOfStockMarkedAt": "",
                     "price": 13888,
                     "shopId": "791",
-                    "showcaseId": "6"
+                    "showcaseId": ""
+                },
+                {
+                    "outOfStock": true,
+                    "outOfStockCount": 1,
+                    "outOfStockMarkedAt": "2026-07-08T21:25:16Z",
+                    "price": 12999,
+                    "shopId": "340",
+                    "showcaseId": ""
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 12999,
+                    "shopId": "960",
+                    "showcaseId": ""
                 }
             ]
         },
         {
             "categories": [
                 "召唤物",
-                "北具"
+                "高级"
             ],
             "categoryPaths": [
+                [
+                    "召唤物",
+                    "高级"
+                ],
                 [
                     "召唤物",
                     "北具"
@@ -74,6 +94,22 @@
                     "price": 9999,
                     "shopId": "593",
                     "showcaseId": "8"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 9999,
+                    "shopId": "344",
+                    "showcaseId": "4"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 8888,
+                    "shopId": "564",
+                    "showcaseId": "5"
                 }
             ]
         },
@@ -130,6 +166,387 @@
                     "showcaseId": "5"
                 }
             ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "塔怪"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "塔怪"
+                ]
+            ],
+            "name": "蛤蟆怪",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 5678,
+                    "shopId": "385",
+                    "showcaseId": "5"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "高级"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "高级"
+                ],
+                [
+                    "召唤物",
+                    "北具"
+                ]
+            ],
+            "name": "风伯",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 9999,
+                    "shopId": "344",
+                    "showcaseId": "3"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "高级"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "高级"
+                ],
+                [
+                    "召唤物",
+                    "龙凤"
+                ]
+            ],
+            "name": "芙蓉仙子",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 10999,
+                    "shopId": "344",
+                    "showcaseId": "10"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "中级"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "中级"
+                ],
+                [
+                    "召唤物",
+                    "海底"
+                ]
+            ],
+            "name": "龟丞相",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 8888,
+                    "shopId": "652",
+                    "showcaseId": "6"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "家具",
+                "二级家具"
+            ],
+            "categoryPaths": [
+                [
+                    "家具",
+                    "二级家具"
+                ]
+            ],
+            "name": "水仙",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 18000,
+                    "shopId": "664",
+                    "showcaseId": "2"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "家具",
+                "二级家具"
+            ],
+            "categoryPaths": [
+                [
+                    "家具",
+                    "二级家具"
+                ]
+            ],
+            "name": "漆花地板",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 19999,
+                    "shopId": "756",
+                    "showcaseId": "4"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "高级"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "高级"
+                ],
+                [
+                    "召唤物",
+                    "龙凤"
+                ]
+            ],
+            "name": "星灵仙子",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 9555,
+                    "shopId": "636",
+                    "showcaseId": "10"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "高级"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "高级"
+                ]
+            ],
+            "name": "天兵",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 9555,
+                    "shopId": "636",
+                    "showcaseId": "4"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "塔怪"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "塔怪"
+                ]
+            ],
+            "name": "大海龟",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 5888,
+                    "shopId": "736",
+                    "showcaseId": "1"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "中级"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "中级"
+                ]
+            ],
+            "name": "蜘蛛精",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 7777,
+                    "shopId": "670",
+                    "showcaseId": "8"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "家具",
+                "二级家具"
+            ],
+            "categoryPaths": [
+                [
+                    "家具",
+                    "二级家具"
+                ]
+            ],
+            "name": "青木床",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 16999,
+                    "shopId": "899",
+                    "showcaseId": "1"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "中级"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "中级"
+                ],
+                [
+                    "召唤物",
+                    "北具"
+                ]
+            ],
+            "name": "古代瑞兽",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 7777,
+                    "shopId": "564",
+                    "showcaseId": "2"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "地府"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "地府"
+                ],
+                [
+                    "召唤物",
+                    "中级"
+                ]
+            ],
+            "name": "马面",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 7299,
+                    "shopId": "434",
+                    "showcaseId": "6"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "中级"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "中级"
+                ]
+            ],
+            "name": "蝴蝶",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 7555,
+                    "shopId": "636",
+                    "showcaseId": "1"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 6999,
+                    "shopId": "564",
+                    "showcaseId": "1"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "高级"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "高级"
+                ],
+                [
+                    "召唤物",
+                    "北具"
+                ]
+            ],
+            "name": "雨师",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 9999,
+                    "shopId": "564",
+                    "showcaseId": "8"
+                }
+            ]
         }
     ],
     "secondCategoriesByFirst": {
@@ -138,7 +555,9 @@
             "中级",
             "塔怪",
             "高级",
-            "北具"
+            "北具",
+            "龙凤",
+            "海底"
         ],
         "家具": [
             "二级家具",
