@@ -30,6 +30,7 @@ private:
     void refreshResults();
     void rebuildCategoryMatrix(const QVector<QStringList> &checkedPaths = {});
     void addSecondCategory();
+    void openSecondCategoryManager();
     void openNewItemEditor();
     void openEditorForCurrentResult();
     void openEditorForOffer(const QString &itemName, const QString &shopId);
@@ -48,6 +49,8 @@ private:
     QComboBox *m_category1 = nullptr;
     QComboBox *m_category2 = nullptr;
     QComboBox *m_category3 = nullptr;
+    QPushButton *m_manageSecondCategories = nullptr;
+    QLabel *m_resultSummary = nullptr;
     QTableWidget *m_results = nullptr;
 
     QDialog *m_editDialog = nullptr;

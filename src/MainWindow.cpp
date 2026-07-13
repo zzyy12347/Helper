@@ -15,6 +15,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
+#include <QListWidget>
 #include <QMessageBox>
 #include <QPainter>
 #include <QPainterPath>
@@ -141,28 +142,34 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::buildUi()
 {
     setWindowTitle(QStringLiteral("物品店铺查询"));
-    resize(780, 500);
-    setMinimumSize(700, 420);
+    resize(980, 640);
+    setMinimumSize(860, 540);
 
     auto *root = new QWidget(this);
     root->setObjectName(QStringLiteral("appRoot"));
     auto *rootLayout = new QVBoxLayout(root);
-    rootLayout->setContentsMargins(18, 18, 18, 14);
-    rootLayout->setSpacing(14);
+    rootLayout->setContentsMargins(16, 16, 16, 12);
+    rootLayout->setSpacing(10);
 
     auto *topPanel = new QWidget();
     topPanel->setObjectName(QStringLiteral("filterPanel"));
     auto *topBar = new QHBoxLayout(topPanel);
-    topBar->setContentsMargins(14, 12, 14, 12);
-    topBar->setSpacing(8);
+    topBar->setContentsMargins(14, 10, 14, 10);
+    topBar->setSpacing(10);
     m_alwaysOnTop = new QCheckBox(QStringLiteral("窗口置顶"));
     m_category1 = new QComboBox();
     m_category2 = new QComboBox();
     m_category3 = new QComboBox();
+    m_manageSecondCategories = new QPushButton(QStringLiteral("管理二级"));
+    m_manageSecondCategories->setProperty("role", "secondary");
+    m_manageSecondCategories->setCursor(Qt::PointingHandCursor);
+    m_manageSecondCategories->setIcon(style()->standardIcon(QStyle::SP_FileDialogDetailedView));
+    m_manageSecondCategories->setIconSize(QSize(16, 16));
 
-    m_category1->setMinimumWidth(132);
-    m_category2->setMinimumWidth(132);
-    m_category3->setMinimumWidth(132);
+    m_category1->setMinimumWidth(150);
+    m_category2->setMinimumWidth(170);
+    m_category3->setMinimumWidth(170);
+    m_manageSecondCategories->setMinimumWidth(100);
 
     auto *filterTitle = new QLabel(QStringLiteral("筛选"));
     filterTitle->setObjectName(QStringLiteral("sectionTitle"));
@@ -174,6 +181,7 @@ void MainWindow::buildUi()
     topBar->addWidget(m_category1);
     topBar->addWidget(new QLabel(QStringLiteral("二级")));
     topBar->addWidget(m_category2);
+    topBar->addWidget(m_manageSecondCategories);
     topBar->addWidget(new QLabel(QStringLiteral("三级")));
     topBar->addWidget(m_category3);
     topBar->addStretch();
@@ -197,7 +205,14 @@ void MainWindow::buildUi()
             headerItem->setTextAlignment((column == 3 ? Qt::AlignRight : Qt::AlignLeft) | Qt::AlignVCenter);
         }
     }
-    m_results->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    m_results->horizontalHeader()->setMinimumSectionSize(90);
+    m_results->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+    m_results->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Fixed);
+    m_results->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Fixed);
+    m_results->horizontalHeader()->setSectionResizeMode(3, QHeaderView::Fixed);
+    m_results->setColumnWidth(1, 140);
+    m_results->setColumnWidth(2, 120);
+    m_results->setColumnWidth(3, 120);
     m_results->verticalHeader()->setVisible(false);
     m_results->setSelectionBehavior(QAbstractItemView::SelectRows);
     m_results->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -223,6 +238,7 @@ void MainWindow::buildUi()
     for (auto *button : {m_markOutOfStock, m_markInStock, m_addItem, m_editSelected}) {
         button->setCursor(Qt::PointingHandCursor);
         button->setIconSize(QSize(16, 16));
+        button->setMinimumWidth(108);
     }
 
     bottomBar->addWidget(m_markOutOfStock);
@@ -233,7 +249,10 @@ void MainWindow::buildUi()
 
     auto *resultTitle = new QLabel(QStringLiteral("搜索结果"));
     resultTitle->setObjectName(QStringLiteral("sectionTitle"));
-    searchLayout->addWidget(resultTitle);
+    m_resultSummary = new QLabel(QStringLiteral("共 0 条报价"));
+    m_resultSummary->setObjectName(QStringLiteral("resultSummary"));
+    bottomBar->insertWidget(0, resultTitle);
+    bottomBar->insertWidget(1, m_resultSummary);
     searchLayout->addWidget(m_results);
     searchLayout->addLayout(bottomBar);
 
@@ -241,8 +260,8 @@ void MainWindow::buildUi()
     m_editDialog->setObjectName(QStringLiteral("editDialog"));
     m_editDialog->setWindowTitle(QStringLiteral("编辑条目"));
     m_editDialog->setWindowModality(Qt::WindowModal);
-    m_editDialog->resize(560, 600);
-    m_editDialog->setMinimumSize(520, 540);
+    m_editDialog->resize(620, 660);
+    m_editDialog->setMinimumSize(580, 580);
     auto *editLayout = new QVBoxLayout(m_editDialog);
     editLayout->setContentsMargins(20, 18, 20, 18);
     editLayout->setSpacing(12);
@@ -256,7 +275,7 @@ void MainWindow::buildUi()
     secondCategoryArea->setObjectName(QStringLiteral("categoryScroll"));
     secondCategoryArea->setWidgetResizable(true);
     secondCategoryArea->setFrameShape(QFrame::NoFrame);
-    secondCategoryArea->setMaximumHeight(210);
+    secondCategoryArea->setMaximumHeight(250);
     m_secondCategoryList = new QWidget();
     m_secondCategoryListLayout = new QVBoxLayout(m_secondCategoryList);
     m_secondCategoryListLayout->setContentsMargins(6, 6, 6, 6);
@@ -349,6 +368,11 @@ void MainWindow::buildUi()
             font-size: 15px;
             font-weight: 700;
         }
+        QLabel#resultSummary {
+            color: #64748b;
+            font-weight: 600;
+            padding-left: 6px;
+        }
         QLabel#editorTitle {
             font-size: 18px;
             padding-bottom: 4px;
@@ -364,7 +388,7 @@ void MainWindow::buildUi()
             color: #334155;
         }
         QComboBox, QLineEdit {
-            min-height: 34px;
+            min-height: 36px;
             padding: 5px 10px;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
@@ -384,7 +408,7 @@ void MainWindow::buildUi()
             border: 0;
         }
         QPushButton {
-            min-height: 32px;
+            min-height: 34px;
             padding: 5px 13px;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
@@ -446,7 +470,7 @@ void MainWindow::buildUi()
             outline: 0;
         }
         QTableWidget::item {
-            padding: 8px 10px;
+            padding: 10px 10px;
             border-bottom: 1px solid #eef2f7;
         }
         QTableWidget::item:selected {
@@ -456,10 +480,26 @@ void MainWindow::buildUi()
         QHeaderView::section {
             background: #f1f5f9;
             color: #475569;
-            padding: 8px 10px;
+            padding: 9px 10px;
             border: 0;
             border-bottom: 1px solid #dbe4ee;
             font-weight: 700;
+        }
+        QListWidget {
+            background: #ffffff;
+            border: 1px solid #dbe4ee;
+            border-radius: 7px;
+            outline: 0;
+            padding: 4px;
+        }
+        QListWidget::item {
+            min-height: 30px;
+            padding: 5px 8px;
+            border-radius: 5px;
+        }
+        QListWidget::item:selected {
+            background: #dbeafe;
+            color: #0f172a;
         }
         QCheckBox {
             spacing: 7px;
@@ -554,6 +594,9 @@ void MainWindow::connectSignals()
     });
     connect(m_addSecondCategory, &QPushButton::clicked, this, [this] {
         addSecondCategory();
+    });
+    connect(m_manageSecondCategories, &QPushButton::clicked, this, [this] {
+        openSecondCategoryManager();
     });
     connect(m_markOutOfStock, &QPushButton::clicked, this, [this] {
         markSelectedOffer(true);
@@ -757,6 +800,260 @@ void MainWindow::addSecondCategory()
     showMessage(QStringLiteral("已新增二级类目。"));
 }
 
+void MainWindow::openSecondCategoryManager()
+{
+    QString firstCategory;
+    if (m_category1->currentIndex() > 0) {
+        firstCategory = m_category1->currentText();
+    } else {
+        bool ok = false;
+        firstCategory = QInputDialog::getItem(this,
+                                              QStringLiteral("选择一级类目"),
+                                              QStringLiteral("一级类目"),
+                                              kFirstCategories,
+                                              0,
+                                              false,
+                                              &ok);
+        if (!ok || firstCategory.isEmpty()) {
+            return;
+        }
+    }
+
+    QDialog dialog(this);
+    dialog.setWindowTitle(QStringLiteral("管理二级菜单"));
+    dialog.setWindowModality(Qt::WindowModal);
+    dialog.setWindowFlag(Qt::WindowStaysOnTopHint, m_alwaysOnTop->isChecked());
+    dialog.resize(420, 420);
+
+    auto *layout = new QVBoxLayout(&dialog);
+    layout->setContentsMargins(18, 16, 18, 16);
+    layout->setSpacing(10);
+
+    auto *title = new QLabel(QStringLiteral("一级类目：%1").arg(firstCategory), &dialog);
+    title->setObjectName(QStringLiteral("sectionTitle"));
+    auto *list = new QListWidget(&dialog);
+    list->setSelectionMode(QAbstractItemView::SingleSelection);
+    list->addItems(m_secondCategoriesByFirst.value(firstCategory));
+
+    auto *buttonRow = new QHBoxLayout();
+    buttonRow->setSpacing(8);
+    auto *addButton = new QPushButton(QStringLiteral("新增"), &dialog);
+    auto *renameButton = new QPushButton(QStringLiteral("改名"), &dialog);
+    auto *deleteButton = new QPushButton(QStringLiteral("删除"), &dialog);
+    auto *moveUpButton = new QPushButton(QStringLiteral("上移"), &dialog);
+    auto *moveDownButton = new QPushButton(QStringLiteral("下移"), &dialog);
+    auto *doneButton = new QPushButton(QStringLiteral("完成"), &dialog);
+
+    addButton->setProperty("role", "secondary");
+    renameButton->setProperty("role", "primary");
+    deleteButton->setProperty("role", "danger");
+    doneButton->setProperty("role", "primary");
+    addButton->setIcon(style()->standardIcon(QStyle::SP_FileDialogNewFolder));
+    renameButton->setIcon(style()->standardIcon(QStyle::SP_FileDialogDetailedView));
+    deleteButton->setIcon(style()->standardIcon(QStyle::SP_TrashIcon));
+    moveUpButton->setIcon(style()->standardIcon(QStyle::SP_ArrowUp));
+    moveDownButton->setIcon(style()->standardIcon(QStyle::SP_ArrowDown));
+    for (auto *button : {addButton, renameButton, deleteButton, moveUpButton, moveDownButton, doneButton}) {
+        button->setCursor(Qt::PointingHandCursor);
+        button->setIconSize(QSize(16, 16));
+    }
+
+    buttonRow->addWidget(addButton);
+    buttonRow->addWidget(renameButton);
+    buttonRow->addWidget(deleteButton);
+    buttonRow->addWidget(moveUpButton);
+    buttonRow->addWidget(moveDownButton);
+
+    auto *doneRow = new QHBoxLayout();
+    doneRow->addStretch();
+    doneRow->addWidget(doneButton);
+
+    layout->addWidget(title);
+    layout->addWidget(list);
+    layout->addLayout(buttonRow);
+    layout->addLayout(doneRow);
+
+    auto listValues = [list]() {
+        QStringList values;
+        for (int row = 0; row < list->count(); ++row) {
+            values.push_back(list->item(row)->text());
+        }
+        return values;
+    };
+
+    auto selectValue = [list](const QString &value) {
+        const auto matches = list->findItems(value, Qt::MatchExactly);
+        if (!matches.isEmpty()) {
+            list->setCurrentItem(matches.first());
+        }
+    };
+
+    auto rebuildList = [list, this, &firstCategory, &selectValue](const QString &selectedValue = {}) {
+        list->clear();
+        list->addItems(m_secondCategoriesByFirst.value(firstCategory));
+        if (!selectedValue.isEmpty()) {
+            selectValue(selectedValue);
+        }
+    };
+
+    auto saveCategories = [this, &dialog]() {
+        m_store.secondCategoriesByFirst() = m_secondCategoriesByFirst;
+        if (!m_store.save()) {
+            QMessageBox::warning(&dialog, QStringLiteral("保存失败"), QStringLiteral("二级菜单保存失败，请检查数据文件权限。"));
+            return false;
+        }
+        refreshCategoryCombos();
+        refreshResults();
+        return true;
+    };
+
+    auto renameItemPaths = [this, &firstCategory](const QString &oldName, const QString &newName) {
+        for (auto &item : m_store.items()) {
+            QVector<QStringList> updatedPaths;
+            for (auto path : item.categoryPaths) {
+                if (path.size() > 1 && path.at(0) == firstCategory && path.at(1) == oldName) {
+                    path[1] = newName;
+                }
+                if (!updatedPaths.contains(path)) {
+                    updatedPaths.push_back(path);
+                }
+            }
+            item.categoryPaths = updatedPaths;
+        }
+    };
+
+    auto removeItemPaths = [this, &firstCategory](const QString &name) {
+        for (auto &item : m_store.items()) {
+            QVector<QStringList> updatedPaths;
+            for (const auto &path : item.categoryPaths) {
+                if (path.size() > 1 && path.at(0) == firstCategory && path.at(1) == name) {
+                    continue;
+                }
+                updatedPaths.push_back(path);
+            }
+            item.categoryPaths = updatedPaths;
+        }
+    };
+
+    connect(addButton, &QPushButton::clicked, &dialog, [&, list] {
+        bool ok = false;
+        const auto name = QInputDialog::getText(&dialog,
+                                                QStringLiteral("新增二级菜单"),
+                                                QStringLiteral("二级菜单名称"),
+                                                QLineEdit::Normal,
+                                                {},
+                                                &ok).trimmed();
+        if (!ok || name.isEmpty()) {
+            return;
+        }
+        auto categories = listValues();
+        if (categories.contains(name, Qt::CaseInsensitive)) {
+            QMessageBox::information(&dialog, QStringLiteral("不能新增"), QStringLiteral("这个二级菜单已经存在。"));
+            return;
+        }
+
+        categories.push_back(name);
+        m_secondCategoriesByFirst[firstCategory] = categories;
+        if (saveCategories()) {
+            rebuildList(name);
+            showMessage(QStringLiteral("已新增二级菜单。"));
+        }
+    });
+
+    connect(renameButton, &QPushButton::clicked, &dialog, [&, list] {
+        auto *current = list->currentItem();
+        if (!current) {
+            QMessageBox::information(&dialog, QStringLiteral("请选择"), QStringLiteral("请先选择一个二级菜单。"));
+            return;
+        }
+
+        const auto oldName = current->text();
+        bool ok = false;
+        const auto newName = QInputDialog::getText(&dialog,
+                                                   QStringLiteral("改名二级菜单"),
+                                                   QStringLiteral("二级菜单名称"),
+                                                   QLineEdit::Normal,
+                                                   oldName,
+                                                   &ok).trimmed();
+        if (!ok || newName.isEmpty() || newName == oldName) {
+            return;
+        }
+
+        auto categories = listValues();
+        if (categories.contains(newName, Qt::CaseInsensitive)) {
+            QMessageBox::information(&dialog, QStringLiteral("不能改名"), QStringLiteral("这个二级菜单已经存在。"));
+            return;
+        }
+
+        for (auto &category : categories) {
+            if (category == oldName) {
+                category = newName;
+                break;
+            }
+        }
+        m_secondCategoriesByFirst[firstCategory] = categories;
+        renameItemPaths(oldName, newName);
+        if (saveCategories()) {
+            rebuildList(newName);
+            showMessage(QStringLiteral("已改名二级菜单。"));
+        }
+    });
+
+    connect(deleteButton, &QPushButton::clicked, &dialog, [&, list] {
+        auto *current = list->currentItem();
+        if (!current) {
+            QMessageBox::information(&dialog, QStringLiteral("请选择"), QStringLiteral("请先选择一个二级菜单。"));
+            return;
+        }
+
+        const auto name = current->text();
+        if (QMessageBox::question(&dialog,
+                                  QStringLiteral("删除二级菜单"),
+                                  QStringLiteral("确定删除“%1”？相关物品会移除这个类目。").arg(name))
+            != QMessageBox::Yes) {
+            return;
+        }
+
+        auto categories = listValues();
+        categories.removeAll(name);
+        m_secondCategoriesByFirst[firstCategory] = categories;
+        removeItemPaths(name);
+        if (saveCategories()) {
+            rebuildList();
+            showMessage(QStringLiteral("已删除二级菜单。"));
+        }
+    });
+
+    auto moveCurrent = [&, list](int offset) {
+        const int row = list->currentRow();
+        const int targetRow = row + offset;
+        if (row < 0 || targetRow < 0 || targetRow >= list->count()) {
+            return;
+        }
+
+        auto categories = listValues();
+        const auto movedName = categories.at(row);
+        categories.move(row, targetRow);
+        m_secondCategoriesByFirst[firstCategory] = categories;
+        if (saveCategories()) {
+            rebuildList(movedName);
+            showMessage(QStringLiteral("已调整二级菜单顺序。"));
+        }
+    };
+
+    connect(moveUpButton, &QPushButton::clicked, &dialog, [moveCurrent] {
+        moveCurrent(-1);
+    });
+    connect(moveDownButton, &QPushButton::clicked, &dialog, [moveCurrent] {
+        moveCurrent(1);
+    });
+    connect(doneButton, &QPushButton::clicked, &dialog, [&dialog] {
+        dialog.accept();
+    });
+
+    dialog.exec();
+}
+
 void MainWindow::refreshResults()
 {
     if (m_store.refreshExpiredStock()) {
@@ -790,6 +1087,16 @@ void MainWindow::refreshResults()
         return left.price < right.price;
     });
 
+    int outOfStockCount = 0;
+    for (const auto &row : rows) {
+        if (row.outOfStock) {
+            ++outOfStockCount;
+        }
+    }
+    if (m_resultSummary) {
+        m_resultSummary->setText(QStringLiteral("共 %1 条报价，%2 条没货").arg(rows.size()).arg(outOfStockCount));
+    }
+
     m_results->setRowCount(rows.size());
     for (int row = 0; row < rows.size(); ++row) {
         const auto &entry = rows.at(row);
@@ -810,7 +1117,7 @@ void MainWindow::refreshResults()
                 }
             }
         }
-        m_results->setRowHeight(row, 34);
+        m_results->setRowHeight(row, 38);
     }
 }
 
