@@ -3,12 +3,12 @@
         {
             "categories": [
                 "家具",
-                "二级家具"
+                "一级家具"
             ],
             "categoryPaths": [
                 [
                     "家具",
-                    "二级家具"
+                    "一级家具"
                 ]
             ],
             "name": "银烛台",
@@ -20,6 +20,14 @@
                     "price": 19988,
                     "shopId": "536",
                     "showcaseId": "2"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 16999,
+                    "shopId": "899",
+                    "showcaseId": "1"
                 }
             ]
         },
@@ -54,8 +62,8 @@
                 },
                 {
                     "outOfStock": true,
-                    "outOfStockCount": 2,
-                    "outOfStockMarkedAt": "2026-07-10T12:13:50Z",
+                    "outOfStockCount": 8,
+                    "outOfStockMarkedAt": "2026-07-18T17:40:17Z",
                     "price": 12999,
                     "shopId": "340",
                     "showcaseId": ""
@@ -64,16 +72,32 @@
                     "outOfStock": false,
                     "outOfStockCount": 0,
                     "outOfStockMarkedAt": "",
-                    "price": 12999,
+                    "price": 13333,
                     "shopId": "960",
                     "showcaseId": ""
+                },
+                {
+                    "outOfStock": true,
+                    "outOfStockCount": 6,
+                    "outOfStockMarkedAt": "2026-07-18T12:30:52Z",
+                    "price": 12999,
+                    "shopId": "866",
+                    "showcaseId": ""
+                },
+                {
+                    "outOfStock": true,
+                    "outOfStockCount": 1,
+                    "outOfStockMarkedAt": "2026-07-18T18:06:03Z",
+                    "price": 12999,
+                    "shopId": "691",
+                    "showcaseId": "8"
                 },
                 {
                     "outOfStock": false,
                     "outOfStockCount": 0,
                     "outOfStockMarkedAt": "",
                     "price": 12999,
-                    "shopId": "866",
+                    "shopId": "701",
                     "showcaseId": ""
                 }
             ]
@@ -87,10 +111,6 @@
                 [
                     "召唤物",
                     "高级"
-                ],
-                [
-                    "召唤物",
-                    "北具"
                 ]
             ],
             "name": "地狱战神",
@@ -124,16 +144,12 @@
         {
             "categories": [
                 "召唤物",
-                "地府"
+                "中级上"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "地府"
-                ],
-                [
-                    "召唤物",
-                    "中级"
+                    "中级上"
                 ]
             ],
             "name": "僵尸",
@@ -145,22 +161,26 @@
                     "price": 8888,
                     "shopId": "652",
                     "showcaseId": "8"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 7299,
+                    "shopId": "434",
+                    "showcaseId": "4"
                 }
             ]
         },
         {
             "categories": [
                 "召唤物",
-                "中级"
+                "中级上"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级"
-                ],
-                [
-                    "召唤物",
-                    "北具"
+                    "中级上"
                 ]
             ],
             "name": "白熊",
@@ -172,19 +192,21 @@
                     "price": 8999,
                     "shopId": "384",
                     "showcaseId": "5"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 8888,
+                    "shopId": "453",
+                    "showcaseId": "8"
                 }
             ]
         },
         {
             "categories": [
-                "召唤物",
-                "塔怪"
             ],
             "categoryPaths": [
-                [
-                    "召唤物",
-                    "塔怪"
-                ]
             ],
             "name": "蛤蟆怪",
             "offers": [
@@ -207,10 +229,6 @@
                 [
                     "召唤物",
                     "高级"
-                ],
-                [
-                    "召唤物",
-                    "北具"
                 ]
             ],
             "name": "风伯",
@@ -222,6 +240,14 @@
                     "price": 9999,
                     "shopId": "344",
                     "showcaseId": "3"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 8888,
+                    "shopId": "564",
+                    "showcaseId": "4"
                 }
             ]
         },
@@ -234,10 +260,6 @@
                 [
                     "召唤物",
                     "高级"
-                ],
-                [
-                    "召唤物",
-                    "龙凤"
                 ]
             ],
             "name": "芙蓉仙子",
@@ -255,16 +277,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级"
+                "中级下"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级"
-                ],
-                [
-                    "召唤物",
-                    "海底"
+                    "中级下"
                 ]
             ],
             "name": "龟丞相",
@@ -290,12 +308,12 @@
         {
             "categories": [
                 "家具",
-                "二级家具"
+                "一级家具"
             ],
             "categoryPaths": [
                 [
                     "家具",
-                    "二级家具"
+                    "一级家具"
                 ]
             ],
             "name": "水仙",
@@ -307,19 +325,21 @@
                     "price": 18000,
                     "shopId": "664",
                     "showcaseId": "2"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 16999,
+                    "shopId": "899",
+                    "showcaseId": "1"
                 }
             ]
         },
         {
             "categories": [
-                "家具",
-                "一级家具"
             ],
             "categoryPaths": [
-                [
-                    "家具",
-                    "一级家具"
-                ]
             ],
             "name": "漆花地板",
             "offers": [
@@ -350,10 +370,6 @@
                 [
                     "召唤物",
                     "高级"
-                ],
-                [
-                    "召唤物",
-                    "龙凤"
                 ]
             ],
             "name": "星灵仙子",
@@ -362,7 +378,7 @@
                     "outOfStock": false,
                     "outOfStockCount": 0,
                     "outOfStockMarkedAt": "",
-                    "price": 11555,
+                    "price": 9555,
                     "shopId": "636",
                     "showcaseId": "10"
                 }
@@ -393,14 +409,8 @@
         },
         {
             "categories": [
-                "召唤物",
-                "塔怪"
             ],
             "categoryPaths": [
-                [
-                    "召唤物",
-                    "塔怪"
-                ]
             ],
             "name": "大海龟",
             "offers": [
@@ -417,12 +427,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级"
+                "中级上"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级"
+                    "中级上"
                 ]
             ],
             "name": "蜘蛛精",
@@ -439,14 +449,8 @@
         },
         {
             "categories": [
-                "家具",
-                "二级家具"
             ],
             "categoryPaths": [
-                [
-                    "家具",
-                    "二级家具"
-                ]
             ],
             "name": "青木床",
             "offers": [
@@ -463,16 +467,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级"
+                "中级上"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级"
-                ],
-                [
-                    "召唤物",
-                    "北具"
+                    "中级上"
                 ]
             ],
             "name": "古代瑞兽",
@@ -490,27 +490,31 @@
         {
             "categories": [
                 "召唤物",
-                "地府"
+                "中级上"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "地府"
-                ],
-                [
-                    "召唤物",
-                    "中级"
+                    "中级上"
                 ]
             ],
             "name": "马面",
             "offers": [
                 {
                     "outOfStock": false,
-                    "outOfStockCount": 0,
+                    "outOfStockCount": 1,
                     "outOfStockMarkedAt": "",
                     "price": 7299,
                     "shopId": "434",
                     "showcaseId": "6"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 7777,
+                    "shopId": "126",
+                    "showcaseId": "7"
                 }
             ]
         },
@@ -523,10 +527,6 @@
                 [
                     "召唤物",
                     "高级"
-                ],
-                [
-                    "召唤物",
-                    "北具"
                 ]
             ],
             "name": "雨师",
@@ -543,14 +543,8 @@
         },
         {
             "categories": [
-                "家具",
-                "二级家具"
             ],
             "categoryPaths": [
-                [
-                    "家具",
-                    "二级家具"
-                ]
             ],
             "name": "踏春图",
             "offers": [
@@ -573,10 +567,6 @@
                 [
                     "召唤物",
                     "高级"
-                ],
-                [
-                    "召唤物",
-                    "龙凤"
                 ]
             ],
             "name": "蛟龙",
@@ -594,16 +584,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级"
+                "中级下"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级"
-                ],
-                [
-                    "召唤物",
-                    "海底"
+                    "中级下"
                 ]
             ],
             "name": "虾兵",
@@ -621,12 +607,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级"
+                "中级下"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级"
+                    "中级下"
                 ]
             ],
             "name": "蝴蝶仙子",
@@ -652,16 +638,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级"
+                "中级上"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级"
-                ],
-                [
-                    "召唤物",
-                    "北具"
+                    "中级上"
                 ]
             ],
             "name": "天将",
@@ -718,16 +700,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级"
+                "中级下"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级"
-                ],
-                [
-                    "召唤物",
-                    "花果山"
+                    "中级下"
                 ]
             ],
             "name": "老虎",
@@ -745,12 +723,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级"
+                "中级上"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级"
+                    "中级上"
                 ]
             ],
             "name": "牛妖",
@@ -768,16 +746,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级"
+                "中级下"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级"
-                ],
-                [
-                    "召唤物",
-                    "海底"
+                    "中级下"
                 ]
             ],
             "name": "蟹将",
@@ -795,12 +769,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级"
+                "中级下"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级"
+                    "中级下"
                 ]
             ],
             "name": "狼",
@@ -818,16 +792,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级"
+                "中级上"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级"
-                ],
-                [
-                    "召唤物",
-                    "北具"
+                    "中级上"
                 ]
             ],
             "name": "黑山老妖",
@@ -839,25 +809,274 @@
                     "price": 7999,
                     "shopId": "564",
                     "showcaseId": "3"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 8999,
+                    "shopId": "384",
+                    "showcaseId": "3"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "高级"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "高级"
+                ]
+            ],
+            "name": "如意仙子",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 9999,
+                    "shopId": "564",
+                    "showcaseId": "9"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "家具",
+                "二级家具"
+            ],
+            "categoryPaths": [
+                [
+                    "家具",
+                    "二级家具"
+                ]
+            ],
+            "name": "麻布地毯",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 28888,
+                    "shopId": "750",
+                    "showcaseId": "2"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 28777,
+                    "shopId": "586",
+                    "showcaseId": "2"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "低级"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "低级"
+                ]
+            ],
+            "name": "赌徒",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 5678,
+                    "shopId": "469",
+                    "showcaseId": "4"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "中级下"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "中级下"
+                ]
+            ],
+            "name": "小龙女",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 7777,
+                    "shopId": "652",
+                    "showcaseId": "3"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 6999,
+                    "shopId": "126",
+                    "showcaseId": "5"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "低级"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "低级"
+                ]
+            ],
+            "name": "蛤蟆精",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 5678,
+                    "shopId": "385",
+                    "showcaseId": "5"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "低级"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "低级"
+                ]
+            ],
+            "name": "巨蛙",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 5888,
+                    "shopId": "736",
+                    "showcaseId": "1"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "中级下"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "中级下"
+                ]
+            ],
+            "name": "黑熊",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 6666,
+                    "shopId": "652",
+                    "showcaseId": "2"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "家具",
+                "二级家具"
+            ],
+            "categoryPaths": [
+                [
+                    "家具",
+                    "二级家具"
+                ]
+            ],
+            "name": "八卦镇邪榻",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 27000,
+                    "shopId": "426",
+                    "showcaseId": "5"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "家具",
+                "一级家具"
+            ],
+            "categoryPaths": [
+                [
+                    "家具",
+                    "一级家具"
+                ]
+            ],
+            "name": "玉瓷画瓶",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 19999,
+                    "shopId": "825",
+                    "showcaseId": "2"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "家具",
+                "二级家具"
+            ],
+            "categoryPaths": [
+                [
+                    "家具",
+                    "二级家具"
+                ]
+            ],
+            "name": "神仙帐",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 29999,
+                    "shopId": "123",
+                    "showcaseId": "7"
                 }
             ]
         }
     ],
     "secondCategoriesByFirst": {
         "召唤物": [
-            "地府",
-            "中级",
-            "塔怪",
             "高级",
-            "北具",
-            "龙凤",
-            "海底",
-            "花果山"
+            "中级上",
+            "中级下",
+            "低级"
         ],
         "家具": [
-            "二级家具",
-            "三级家具",
-            "一级家具"
+            "一级家具",
+            "二级家具"
         ],
         "药品/烹饪": [
             "三药",
