@@ -46,7 +46,7 @@
             "offers": [
                 {
                     "outOfStock": false,
-                    "outOfStockCount": 1,
+                    "outOfStockCount": 2,
                     "outOfStockMarkedAt": "",
                     "price": 13333,
                     "shopId": "448",
@@ -62,8 +62,8 @@
                 },
                 {
                     "outOfStock": true,
-                    "outOfStockCount": 8,
-                    "outOfStockMarkedAt": "2026-07-18T17:40:17Z",
+                    "outOfStockCount": 9,
+                    "outOfStockMarkedAt": "2026-07-20T11:56:13Z",
                     "price": 12999,
                     "shopId": "340",
                     "showcaseId": ""
@@ -77,28 +77,44 @@
                     "showcaseId": ""
                 },
                 {
-                    "outOfStock": true,
-                    "outOfStockCount": 6,
-                    "outOfStockMarkedAt": "2026-07-18T12:30:52Z",
+                    "outOfStock": false,
+                    "outOfStockCount": 7,
+                    "outOfStockMarkedAt": "",
                     "price": 12999,
                     "shopId": "866",
                     "showcaseId": ""
                 },
                 {
-                    "outOfStock": true,
-                    "outOfStockCount": 1,
-                    "outOfStockMarkedAt": "2026-07-18T18:06:03Z",
+                    "outOfStock": false,
+                    "outOfStockCount": 2,
+                    "outOfStockMarkedAt": "",
                     "price": 12999,
                     "shopId": "691",
                     "showcaseId": "8"
                 },
                 {
                     "outOfStock": false,
-                    "outOfStockCount": 0,
+                    "outOfStockCount": 1,
                     "outOfStockMarkedAt": "",
                     "price": 12999,
                     "shopId": "701",
                     "showcaseId": ""
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 12999,
+                    "shopId": "695",
+                    "showcaseId": ""
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 13000,
+                    "shopId": "426",
+                    "showcaseId": "1"
                 }
             ]
         },
@@ -144,12 +160,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级上"
+                "中级下"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级上"
+                    "中级下"
                 ]
             ],
             "name": "僵尸",
@@ -169,6 +185,14 @@
                     "price": 7299,
                     "shopId": "434",
                     "showcaseId": "4"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 6999,
+                    "shopId": "700",
+                    "showcaseId": "6"
                 }
             ]
         },
@@ -338,8 +362,14 @@
         },
         {
             "categories": [
+                "家具",
+                "一级家具"
             ],
             "categoryPaths": [
+                [
+                    "家具",
+                    "一级家具"
+                ]
             ],
             "name": "漆花地板",
             "offers": [
@@ -358,6 +388,14 @@
                     "price": 19999,
                     "shopId": "417",
                     "showcaseId": "3"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 19999,
+                    "shopId": "825",
+                    "showcaseId": "2"
                 }
             ]
         },
@@ -375,11 +413,19 @@
             "name": "星灵仙子",
             "offers": [
                 {
+                    "outOfStock": true,
+                    "outOfStockCount": 1,
+                    "outOfStockMarkedAt": "2026-07-21T21:57:50Z",
+                    "price": 9555,
+                    "shopId": "636",
+                    "showcaseId": "10"
+                },
+                {
                     "outOfStock": false,
                     "outOfStockCount": 0,
                     "outOfStockMarkedAt": "",
-                    "price": 9555,
-                    "shopId": "636",
+                    "price": 9999,
+                    "shopId": "584",
                     "showcaseId": "10"
                 }
             ]
@@ -427,12 +473,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级上"
+                "中级下"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级上"
+                    "中级下"
                 ]
             ],
             "name": "蜘蛛精",
@@ -444,6 +490,14 @@
                     "price": 7777,
                     "shopId": "670",
                     "showcaseId": "8"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 6999,
+                    "shopId": "700",
+                    "showcaseId": "10"
                 }
             ]
         },
@@ -467,12 +521,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级上"
+                "高级"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级上"
+                    "高级"
                 ]
             ],
             "name": "古代瑞兽",
@@ -484,18 +538,26 @@
                     "price": 7777,
                     "shopId": "564",
                     "showcaseId": "2"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 8999,
+                    "shopId": "146",
+                    "showcaseId": "10"
                 }
             ]
         },
         {
             "categories": [
                 "召唤物",
-                "中级上"
+                "中级下"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级上"
+                    "中级下"
                 ]
             ],
             "name": "马面",
@@ -514,6 +576,14 @@
                     "outOfStockMarkedAt": "",
                     "price": 7777,
                     "shopId": "126",
+                    "showcaseId": "7"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 6999,
+                    "shopId": "700",
                     "showcaseId": "7"
                 }
             ]
@@ -601,6 +671,22 @@
                     "price": 5999,
                     "shopId": "126",
                     "showcaseId": "1"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 7777,
+                    "shopId": "652",
+                    "showcaseId": "4"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 4800,
+                    "shopId": "700",
+                    "showcaseId": "1"
                 }
             ]
         },
@@ -655,6 +741,14 @@
                     "price": 8888,
                     "shopId": "453",
                     "showcaseId": "9"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 9999,
+                    "shopId": "593",
+                    "showcaseId": "3"
                 }
             ]
         },
@@ -723,12 +817,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级上"
+                "中级下"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级上"
+                    "中级下"
                 ]
             ],
             "name": "牛妖",
@@ -739,6 +833,14 @@
                     "outOfStockMarkedAt": "",
                     "price": 6999,
                     "shopId": "126",
+                    "showcaseId": "8"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 6999,
+                    "shopId": "700",
                     "showcaseId": "8"
                 }
             ]
@@ -763,6 +865,14 @@
                     "price": 6999,
                     "shopId": "126",
                     "showcaseId": "2"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 4800,
+                    "shopId": "700",
+                    "showcaseId": "2"
                 }
             ]
         },
@@ -786,6 +896,14 @@
                     "price": 6999,
                     "shopId": "126",
                     "showcaseId": "4"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 6999,
+                    "shopId": "700",
+                    "showcaseId": "3"
                 }
             ]
         },
@@ -863,14 +981,6 @@
                     "price": 28888,
                     "shopId": "750",
                     "showcaseId": "2"
-                },
-                {
-                    "outOfStock": false,
-                    "outOfStockCount": 0,
-                    "outOfStockMarkedAt": "",
-                    "price": 28777,
-                    "shopId": "586",
-                    "showcaseId": "2"
                 }
             ]
         },
@@ -925,6 +1035,14 @@
                     "price": 6999,
                     "shopId": "126",
                     "showcaseId": "5"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 6999,
+                    "shopId": "700",
+                    "showcaseId": "4"
                 }
             ]
         },
@@ -1063,6 +1181,144 @@
                     "price": 29999,
                     "shopId": "123",
                     "showcaseId": "7"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "高级"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "高级"
+                ]
+            ],
+            "name": "巡游天神",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 9999,
+                    "shopId": "557",
+                    "showcaseId": "7"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "家具",
+                "二级家具"
+            ],
+            "categoryPaths": [
+                [
+                    "家具",
+                    "二级家具"
+                ]
+            ],
+            "name": "彩绘立柜",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 27000,
+                    "shopId": "426",
+                    "showcaseId": "7"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "中级下"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "中级下"
+                ]
+            ],
+            "name": "野鬼",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 6999,
+                    "shopId": "700",
+                    "showcaseId": "5"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "中级下"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "中级下"
+                ]
+            ],
+            "name": "牛头",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 6999,
+                    "shopId": "700",
+                    "showcaseId": "7"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "中级下"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "中级下"
+                ]
+            ],
+            "name": "黑熊精",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 6999,
+                    "shopId": "700",
+                    "showcaseId": "9"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "召唤物",
+                "中级下"
+            ],
+            "categoryPaths": [
+                [
+                    "召唤物",
+                    "中级下"
+                ]
+            ],
+            "name": "兔子怪",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 6999,
+                    "shopId": "700",
+                    "showcaseId": "10"
                 }
             ]
         }
