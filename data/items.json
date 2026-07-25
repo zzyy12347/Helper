@@ -46,7 +46,7 @@
             "offers": [
                 {
                     "outOfStock": false,
-                    "outOfStockCount": 2,
+                    "outOfStockCount": 3,
                     "outOfStockMarkedAt": "",
                     "price": 13333,
                     "shopId": "448",
@@ -62,8 +62,8 @@
                 },
                 {
                     "outOfStock": true,
-                    "outOfStockCount": 9,
-                    "outOfStockMarkedAt": "2026-07-20T11:56:13Z",
+                    "outOfStockCount": 11,
+                    "outOfStockMarkedAt": "2026-07-24T07:08:04Z",
                     "price": 12999,
                     "shopId": "340",
                     "showcaseId": ""
@@ -77,24 +77,24 @@
                     "showcaseId": ""
                 },
                 {
-                    "outOfStock": false,
-                    "outOfStockCount": 7,
-                    "outOfStockMarkedAt": "",
+                    "outOfStock": true,
+                    "outOfStockCount": 8,
+                    "outOfStockMarkedAt": "2026-07-24T08:12:08Z",
                     "price": 12999,
                     "shopId": "866",
                     "showcaseId": ""
                 },
                 {
-                    "outOfStock": false,
-                    "outOfStockCount": 2,
-                    "outOfStockMarkedAt": "",
+                    "outOfStock": true,
+                    "outOfStockCount": 4,
+                    "outOfStockMarkedAt": "2026-07-25T01:34:03Z",
                     "price": 12999,
                     "shopId": "691",
                     "showcaseId": "8"
                 },
                 {
                     "outOfStock": false,
-                    "outOfStockCount": 1,
+                    "outOfStockCount": 2,
                     "outOfStockMarkedAt": "",
                     "price": 12999,
                     "shopId": "701",
@@ -102,7 +102,7 @@
                 },
                 {
                     "outOfStock": false,
-                    "outOfStockCount": 0,
+                    "outOfStockCount": 2,
                     "outOfStockMarkedAt": "",
                     "price": 12999,
                     "shopId": "695",
@@ -413,9 +413,9 @@
             "name": "星灵仙子",
             "offers": [
                 {
-                    "outOfStock": true,
+                    "outOfStock": false,
                     "outOfStockCount": 1,
-                    "outOfStockMarkedAt": "2026-07-21T21:57:50Z",
+                    "outOfStockMarkedAt": "",
                     "price": 9555,
                     "shopId": "636",
                     "showcaseId": "10"
@@ -425,7 +425,7 @@
                     "outOfStockCount": 0,
                     "outOfStockMarkedAt": "",
                     "price": 9999,
-                    "shopId": "584",
+                    "shopId": "557",
                     "showcaseId": "10"
                 }
             ]
@@ -498,6 +498,14 @@
                     "price": 6999,
                     "shopId": "700",
                     "showcaseId": "10"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 7999,
+                    "shopId": "418",
+                    "showcaseId": "4"
                 }
             ]
         },
@@ -608,6 +616,22 @@
                     "price": 9999,
                     "shopId": "564",
                     "showcaseId": "8"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 9999,
+                    "shopId": "344",
+                    "showcaseId": "7"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 9999,
+                    "shopId": "398",
+                    "showcaseId": "6"
                 }
             ]
         },
@@ -811,6 +835,14 @@
                     "price": 6666,
                     "shopId": "652",
                     "showcaseId": "1"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 7999,
+                    "shopId": "453",
+                    "showcaseId": "2"
                 }
             ]
         },
@@ -910,12 +942,12 @@
         {
             "categories": [
                 "召唤物",
-                "中级上"
+                "高级"
             ],
             "categoryPaths": [
                 [
                     "召唤物",
-                    "中级上"
+                    "高级"
                 ]
             ],
             "name": "黑山老妖",
@@ -935,6 +967,22 @@
                     "price": 8999,
                     "shopId": "384",
                     "showcaseId": "3"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 8999,
+                    "shopId": "670",
+                    "showcaseId": "1"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 7999,
+                    "shopId": "810",
+                    "showcaseId": "4"
                 }
             ]
         },
@@ -1158,6 +1206,14 @@
                     "price": 19999,
                     "shopId": "825",
                     "showcaseId": "2"
+                },
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 19999,
+                    "shopId": "756",
+                    "showcaseId": "4"
                 }
             ]
         },

@@ -1,16 +1,16 @@
 # ninja log v7
-17	299	8056248411142123	ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
-17	299	8056248411142123	ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
-17	299	8056248411142123	D:/AIWork/Helper/build/ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
-17	299	8056248411142123	D:/AIWork/Helper/build/ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
-303	1708	8056248411512125	CMakeFiles/ItemShopFinder.dir/src/main.cpp.obj	8bb01a85b91c2225
-300	1923	8056248411482133	CMakeFiles/ItemShopFinder.dir/ItemShopFinder_autogen/mocs_compilation.cpp.obj	3cf99dac204bb24a
-2872	6020	8051810574522552	CMakeFiles/ItemShopFinder.dir/src/DataStore.cpp.obj	7659e9e8c66bf2af
-306	3119	8056248411542127	CMakeFiles/ItemShopFinder.dir/src/MainWindow.cpp.obj	6c64aaeecaaea2f0
-3119	3256	8056248439671491	ItemShopFinder.exe	9f2e2d0f9591e020
 16	95	8056250496457279	ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
 16	95	8056250496457279	ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
 16	95	8056250496457279	D:/AIWork/Helper/build/ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
 16	95	8056250496457279	D:/AIWork/Helper/build/ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
+303	1708	8056248411512125	CMakeFiles/ItemShopFinder.dir/src/main.cpp.obj	8bb01a85b91c2225
+300	1923	8056248411482133	CMakeFiles/ItemShopFinder.dir/ItemShopFinder_autogen/mocs_compilation.cpp.obj	3cf99dac204bb24a
+2872	6020	8051810574522552	CMakeFiles/ItemShopFinder.dir/src/DataStore.cpp.obj	7659e9e8c66bf2af
 96	2779	8056250497257282	CMakeFiles/ItemShopFinder.dir/src/MainWindow.cpp.obj	6c64aaeecaaea2f0
 2779	2916	8056250524080223	ItemShopFinder.exe	9f2e2d0f9591e020
+257	685	8063876274132544	ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
+257	685	8063876274132544	ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
+257	685	8063876274132544	D:/AIWork/Helper/build/ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
+257	685	8063876274132544	D:/AIWork/Helper/build/ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
+686	8409	8063876278422039	CMakeFiles/ItemShopFinder.dir/src/MainWindow.cpp.obj	6c64aaeecaaea2f0
+8409	9248	8063876355650075	ItemShopFinder.exe	9f2e2d0f9591e020

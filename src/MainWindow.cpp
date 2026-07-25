@@ -726,6 +726,13 @@ void MainWindow::refreshCategoryCombos(int changedLevel)
         thirdValues = itemsForFilters(filtersForThird);
         m_category3ShowsItems = true;
     }
+    std::sort(thirdValues.begin(), thirdValues.end(), [](const QString &left, const QString &right) {
+        const int nameComparison = QString::localeAwareCompare(left, right);
+        if (nameComparison != 0) {
+            return nameComparison < 0;
+        }
+        return QString::compare(left, right, Qt::CaseInsensitive) < 0;
+    });
 
     fillCombo(m_category3, thirdValues, current3);
 }
@@ -1081,10 +1088,25 @@ void MainWindow::refreshResults()
     }
 
     std::sort(rows.begin(), rows.end(), [](const Row &left, const Row &right) {
+        const int nameComparison = QString::localeAwareCompare(left.itemName, right.itemName);
+        if (nameComparison != 0) {
+            return nameComparison < 0;
+        }
+        const int fallbackNameComparison = QString::compare(left.itemName, right.itemName, Qt::CaseInsensitive);
+        if (fallbackNameComparison != 0) {
+            return fallbackNameComparison < 0;
+        }
         if (left.outOfStock != right.outOfStock) {
             return !left.outOfStock;
         }
-        return left.price < right.price;
+        if (left.price != right.price) {
+            return left.price < right.price;
+        }
+        const int shopComparison = QString::localeAwareCompare(left.shopId, right.shopId);
+        if (shopComparison != 0) {
+            return shopComparison < 0;
+        }
+        return QString::localeAwareCompare(left.showcaseId, right.showcaseId) < 0;
     });
 
     int outOfStockCount = 0;
