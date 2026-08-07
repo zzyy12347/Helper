@@ -56,38 +56,22 @@
                     "outOfStock": false,
                     "outOfStockCount": 0,
                     "outOfStockMarkedAt": "",
-                    "price": 13888,
-                    "shopId": "791",
-                    "showcaseId": ""
-                },
-                {
-                    "outOfStock": true,
-                    "outOfStockCount": 11,
-                    "outOfStockMarkedAt": "2026-07-24T07:08:04Z",
-                    "price": 12999,
-                    "shopId": "340",
-                    "showcaseId": ""
-                },
-                {
-                    "outOfStock": false,
-                    "outOfStockCount": 0,
-                    "outOfStockMarkedAt": "",
                     "price": 13333,
                     "shopId": "960",
                     "showcaseId": ""
                 },
                 {
-                    "outOfStock": true,
+                    "outOfStock": false,
                     "outOfStockCount": 8,
-                    "outOfStockMarkedAt": "2026-07-24T08:12:08Z",
+                    "outOfStockMarkedAt": "",
                     "price": 12999,
                     "shopId": "866",
                     "showcaseId": ""
                 },
                 {
-                    "outOfStock": true,
+                    "outOfStock": false,
                     "outOfStockCount": 4,
-                    "outOfStockMarkedAt": "2026-07-25T01:34:03Z",
+                    "outOfStockMarkedAt": "",
                     "price": 12999,
                     "shopId": "691",
                     "showcaseId": "8"
