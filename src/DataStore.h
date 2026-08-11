@@ -2,6 +2,7 @@
 
 #include <QJsonArray>
 #include <QMap>
+#include <QRect>
 #include <QString>
 #include <QStringList>
 #include <QVector>
@@ -21,6 +22,12 @@ struct ItemRecord {
     QVector<ShopOffer> offers;
 };
 
+struct OcrConfig {
+    QRect fixedRegion;
+    bool fixedRegionEnabled = false;
+    QString hotkey = QStringLiteral("F8");
+};
+
 class DataStore {
 public:
     explicit DataStore(const QString &filePath);
@@ -32,6 +39,8 @@ public:
     const QVector<ItemRecord> &items() const;
     QMap<QString, QStringList> &secondCategoriesByFirst();
     const QMap<QString, QStringList> &secondCategoriesByFirst() const;
+    OcrConfig &ocrConfig();
+    const OcrConfig &ocrConfig() const;
 
     QStringList categoriesAtLevel(int level, const QStringList &prefix) const;
     QStringList itemNamesForPrefix(const QStringList &prefix) const;
@@ -51,4 +60,5 @@ private:
     QString m_filePath;
     QVector<ItemRecord> m_items;
     QMap<QString, QStringList> m_secondCategoriesByFirst;
+    OcrConfig m_ocrConfig;
 };

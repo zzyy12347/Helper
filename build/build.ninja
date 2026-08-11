@@ -89,6 +89,26 @@ build CMakeFiles/ItemShopFinder.dir/src/DataStore.cpp.obj: CXX_COMPILER__ItemSho
   OBJECT_FILE_DIR = CMakeFiles\ItemShopFinder.dir\src
   TARGET_SUPPORT_DIR = CMakeFiles\ItemShopFinder.dir
 
+build CMakeFiles/ItemShopFinder.dir/src/OcrRunner.cpp.obj: CXX_COMPILER__ItemShopFinder_unscanned_Release D$:/AIWork/Helper/src/OcrRunner.cpp || cmake_object_order_depends_target_ItemShopFinder
+  CONFIG = Release
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles\ItemShopFinder.dir\src\OcrRunner.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  INCLUDES = -ID:/AIWork/Helper/build/ItemShopFinder_autogen/include -isystem D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include -isystem D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++
+  OBJECT_DIR = CMakeFiles\ItemShopFinder.dir
+  OBJECT_FILE_DIR = CMakeFiles\ItemShopFinder.dir\src
+  TARGET_SUPPORT_DIR = CMakeFiles\ItemShopFinder.dir
+
+build CMakeFiles/ItemShopFinder.dir/src/ScreenCaptureOverlay.cpp.obj: CXX_COMPILER__ItemShopFinder_unscanned_Release D$:/AIWork/Helper/src/ScreenCaptureOverlay.cpp || cmake_object_order_depends_target_ItemShopFinder
+  CONFIG = Release
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles\ItemShopFinder.dir\src\ScreenCaptureOverlay.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  INCLUDES = -ID:/AIWork/Helper/build/ItemShopFinder_autogen/include -isystem D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include -isystem D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++
+  OBJECT_DIR = CMakeFiles\ItemShopFinder.dir
+  OBJECT_FILE_DIR = CMakeFiles\ItemShopFinder.dir\src
+  TARGET_SUPPORT_DIR = CMakeFiles\ItemShopFinder.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target ItemShopFinder
@@ -97,13 +117,13 @@ build CMakeFiles/ItemShopFinder.dir/src/DataStore.cpp.obj: CXX_COMPILER__ItemSho
 #############################################
 # Link the executable ItemShopFinder.exe
 
-build ItemShopFinder.exe: CXX_EXECUTABLE_LINKER__ItemShopFinder_Release CMakeFiles/ItemShopFinder.dir/ItemShopFinder_autogen/mocs_compilation.cpp.obj CMakeFiles/ItemShopFinder.dir/src/main.cpp.obj CMakeFiles/ItemShopFinder.dir/src/MainWindow.cpp.obj CMakeFiles/ItemShopFinder.dir/src/DataStore.cpp.obj | D$:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/lib/libQt5Widgets.a D$:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/lib/libQt5Gui.a D$:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/lib/libQt5Core.a D$:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/lib/libqtmain.a || ItemShopFinder_autogen ItemShopFinder_autogen_timestamp_deps
+build ItemShopFinder.exe: CXX_EXECUTABLE_LINKER__ItemShopFinder_Release CMakeFiles/ItemShopFinder.dir/ItemShopFinder_autogen/mocs_compilation.cpp.obj CMakeFiles/ItemShopFinder.dir/src/main.cpp.obj CMakeFiles/ItemShopFinder.dir/src/MainWindow.cpp.obj CMakeFiles/ItemShopFinder.dir/src/DataStore.cpp.obj CMakeFiles/ItemShopFinder.dir/src/OcrRunner.cpp.obj CMakeFiles/ItemShopFinder.dir/src/ScreenCaptureOverlay.cpp.obj | D$:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/lib/libQt5Widgets.a D$:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/lib/libQt5Gui.a D$:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/lib/libQt5Core.a D$:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/lib/libqtmain.a || ItemShopFinder_autogen ItemShopFinder_autogen_timestamp_deps
   CONFIG = Release
   FLAGS = -O3 -DNDEBUG
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/lib/libQt5Widgets.a  D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/lib/libQt5Gui.a  D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/lib/libQt5Core.a  D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/lib/libqtmain.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ItemShopFinder.dir
-  POST_BUILD = cd .
+  POST_BUILD = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\AIWork\Helper\build && D:\AIWork\_codex_build_tools\venv\Lib\site-packages\cmake\data\bin\cmake.exe -E make_directory D:/AIWork/Helper/build/third_party/rapidocr && D:\AIWork\_codex_build_tools\venv\Lib\site-packages\cmake\data\bin\cmake.exe -E copy_directory D:/AIWork/Helper/third_party/rapidocr/runtime D:/AIWork/Helper/build/third_party/rapidocr"
   PRE_LINK = cd .
   TARGET_FILE = ItemShopFinder.exe
   TARGET_IMPLIB = libItemShopFinder.dll.a

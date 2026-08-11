@@ -13,6 +13,18 @@ echo Project: %~dp0
 echo Config : %CONFIG%
 echo.
 
+if exist "%~dp0third_party\rapidocr\build_worker.ps1" (
+    echo [0/3] Building offline OCR worker...
+    powershell -ExecutionPolicy Bypass -File "%~dp0third_party\rapidocr\build_worker.ps1"
+    if errorlevel 1 (
+        echo.
+        echo [ERROR] Offline OCR worker build failed.
+        pause
+        exit /b 1
+    )
+    echo.
+)
+
 where cmake >nul 2>nul
 if errorlevel 1 (
     echo [ERROR] CMake was not found in PATH.

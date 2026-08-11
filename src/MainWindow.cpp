@@ -1,4 +1,6 @@
 #include "MainWindow.h"
+#include "OcrRunner.h"
+#include "ScreenCaptureOverlay.h"
 
 #include <QAbstractItemView>
 #include <QApplication>
@@ -9,10 +11,14 @@
 #include <QDialog>
 #include <QDoubleValidator>
 #include <QDir>
+#include <QFileDialog>
 #include <QFormLayout>
 #include <QFrame>
+#include <QGuiApplication>
 #include <QHeaderView>
 #include <QHBoxLayout>
+#include <QImage>
+#include <QKeyEvent>
 #include <QLabel>
 #include <QLineEdit>
 #include <QListWidget>
@@ -20,6 +26,8 @@
 #include <QPainter>
 #include <QPainterPath>
 #include <QPushButton>
+#include <QRegularExpression>
+#include <QScreen>
 #include <QInputDialog>
 #include <QScrollArea>
 #include <QSet>
@@ -29,11 +37,22 @@
 #include <QStatusBar>
 #include <QStyle>
 #include <QTableWidget>
+#include <QTimer>
 #include <QVBoxLayout>
 
 #include <algorithm>
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#ifndef MOD_NOREPEAT
+#define MOD_NOREPEAT 0x4000
+#endif
+#endif
+
 namespace {
+constexpr int kOcrHotkeyId = 0xC811;
+constexpr double kAutoApplyThreshold = 0.68;
+
 const QStringList kFirstCategories = {
     QStringLiteral("召唤物"),
     QStringLiteral("药品/烹饪"),
@@ -128,15 +147,119 @@ protected:
     }
 };
 
+QString normalizeForMatching(const QString &value)
+{
+    QString normalized = value.normalized(QString::NormalizationForm_KC);
+    normalized.remove(QRegularExpression(QStringLiteral("[\\s\\p{P}\\p{S}]+")));
+    return normalized.toLower();
+}
+
+int levenshteinDistance(const QString &left, const QString &right)
+{
+    if (left == right) {
+        return 0;
+    }
+    if (left.isEmpty()) {
+        return right.size();
+    }
+    if (right.isEmpty()) {
+        return left.size();
+    }
+
+    QVector<int> previous(right.size() + 1);
+    QVector<int> current(right.size() + 1);
+    for (int i = 0; i <= right.size(); ++i) {
+        previous[i] = i;
+    }
+
+    for (int row = 1; row <= left.size(); ++row) {
+        current[0] = row;
+        for (int column = 1; column <= right.size(); ++column) {
+            const int cost = left.at(row - 1) == right.at(column - 1) ? 0 : 1;
+            current[column] = std::min({current[column - 1] + 1, previous[column] + 1, previous[column - 1] + cost});
+        }
+        previous = current;
+    }
+
+    return previous.back();
+}
+
+double scoreCandidate(const QString &ocrText, const QString &candidate)
+{
+    if (ocrText.isEmpty() || candidate.isEmpty()) {
+        return 0.0;
+    }
+    if (ocrText == candidate) {
+        return 1.0;
+    }
+    if (candidate.contains(ocrText) || ocrText.contains(candidate)) {
+        const double overlap = double(std::min(ocrText.size(), candidate.size())) / double(std::max(ocrText.size(), candidate.size()));
+        return 0.82 + (overlap * 0.18);
+    }
+
+    const int distance = levenshteinDistance(ocrText, candidate);
+    const int baseline = std::max(ocrText.size(), candidate.size());
+    return std::max(0.0, 1.0 - (double(distance) / double(std::max(1, baseline))));
+}
+
+void applyTopmostFlag(QWidget *widget, bool topmost)
+{
+    if (topmost && widget) {
+        widget->setWindowFlag(Qt::WindowStaysOnTopHint, true);
+    }
+}
+
+QImage captureDesktopRegion(const QRect &globalRect)
+{
+    if (!globalRect.isValid()) {
+        return {};
+    }
+
+    QScreen *screen = QGuiApplication::screenAt(globalRect.center());
+    if (!screen) {
+        screen = QGuiApplication::primaryScreen();
+    }
+    if (!screen) {
+        return {};
+    }
+
+    const QPixmap pixmap = screen->grabWindow(0, globalRect.x(), globalRect.y(), globalRect.width(), globalRect.height());
+    return pixmap.toImage();
+}
+
+#ifdef Q_OS_WIN
+UINT hotkeyVirtualKey(const QString &hotkey)
+{
+    const QRegularExpression pattern(QStringLiteral("^F([1-9]|1\\d|2[0-4])$"), QRegularExpression::CaseInsensitiveOption);
+    const QRegularExpressionMatch match = pattern.match(hotkey.trimmed());
+    if (!match.hasMatch()) {
+        return 0;
+    }
+
+    const int functionIndex = match.captured(1).toInt();
+    return UINT(VK_F1 + functionIndex - 1);
+}
+#endif
+
 }
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , m_store(trackedDataFilePath())
 {
+    m_captureOverlay = new ScreenCaptureOverlay();
+    m_ocrRunner = new OcrRunner(this);
     buildUi();
     connectSignals();
     loadData();
+}
+
+MainWindow::~MainWindow()
+{
+    unregisterGlobalHotkey();
+    if (m_captureOverlay) {
+        m_captureOverlay->deleteLater();
+    }
 }
 
 void MainWindow::buildUi()
@@ -226,16 +349,22 @@ void MainWindow::buildUi()
     bottomBar->setSpacing(8);
     m_markOutOfStock = new QPushButton(QStringLiteral("标记没货"));
     m_markInStock = new QPushButton(QStringLiteral("恢复有货"));
+    m_captureRecognition = new QPushButton(QStringLiteral("截图识别"));
+    m_fixedRegionRecognition = new QPushButton(QStringLiteral("固定区域"));
     m_addItem = new QPushButton(QStringLiteral("新增条目"));
     m_editSelected = new QPushButton(QStringLiteral("修改选中"));
     m_addItem->setProperty("role", "primary");
     m_editSelected->setProperty("role", "primary");
+    m_captureRecognition->setProperty("role", "secondary");
+    m_fixedRegionRecognition->setProperty("role", "secondary");
     m_markOutOfStock->setProperty("role", "warning");
     m_markOutOfStock->setIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning));
     m_markInStock->setIcon(style()->standardIcon(QStyle::SP_DialogApplyButton));
+    m_captureRecognition->setIcon(style()->standardIcon(QStyle::SP_FileDialogContentsView));
+    m_fixedRegionRecognition->setIcon(style()->standardIcon(QStyle::SP_ComputerIcon));
     m_addItem->setIcon(style()->standardIcon(QStyle::SP_FileDialogNewFolder));
     m_editSelected->setIcon(style()->standardIcon(QStyle::SP_FileDialogDetailedView));
-    for (auto *button : {m_markOutOfStock, m_markInStock, m_addItem, m_editSelected}) {
+    for (auto *button : {m_markOutOfStock, m_markInStock, m_captureRecognition, m_fixedRegionRecognition, m_addItem, m_editSelected}) {
         button->setCursor(Qt::PointingHandCursor);
         button->setIconSize(QSize(16, 16));
         button->setMinimumWidth(108);
@@ -243,6 +372,8 @@ void MainWindow::buildUi()
 
     bottomBar->addWidget(m_markOutOfStock);
     bottomBar->addWidget(m_markInStock);
+    bottomBar->addWidget(m_captureRecognition);
+    bottomBar->addWidget(m_fixedRegionRecognition);
     bottomBar->addStretch();
     bottomBar->addWidget(m_addItem);
     bottomBar->addWidget(m_editSelected);
@@ -604,6 +735,19 @@ void MainWindow::connectSignals()
     connect(m_markInStock, &QPushButton::clicked, this, [this] {
         markSelectedOffer(false);
     });
+    connect(m_captureRecognition, &QPushButton::clicked, this, [this] {
+        startSingleCaptureRecognition();
+    });
+    connect(m_fixedRegionRecognition, &QPushButton::clicked, this, [this] {
+        toggleFixedRegionCapture();
+    });
+    connect(m_captureOverlay, &ScreenCaptureOverlay::selectionCaptured, this, [this](const QRect &globalRect) {
+        handleCaptureSelection(globalRect);
+    });
+    connect(m_captureOverlay, &ScreenCaptureOverlay::captureCancelled, this, [this] {
+        m_captureMode = CaptureMode::None;
+        showMessage(QStringLiteral("已取消截图识别。"));
+    });
 }
 
 void MainWindow::loadData()
@@ -613,6 +757,7 @@ void MainWindow::loadData()
     }
 
     m_secondCategoriesByFirst = m_store.secondCategoriesByFirst();
+    loadOcrConfig();
     rebuildCategoryMatrix();
     refreshCategoryCombos();
     refreshResults();
@@ -1309,6 +1454,267 @@ void MainWindow::markSelectedOffer(bool outOfStock)
     m_store.save();
     refreshResults();
     showMessage(outOfStock ? QStringLiteral("已标记没货，系统会按历史次数自动恢复。") : QStringLiteral("已恢复有货。"));
+}
+
+void MainWindow::startSingleCaptureRecognition()
+{
+    beginCapture(CaptureMode::SingleShot);
+}
+
+void MainWindow::toggleFixedRegionCapture()
+{
+    if (!m_fixedCaptureRegion.isValid() || !m_fixedCaptureEnabled) {
+        beginCapture(CaptureMode::FixedRegionSetup);
+        return;
+    }
+
+    QMessageBox box(QMessageBox::Question,
+                    QStringLiteral("固定区域"),
+                    QStringLiteral("当前已经设置固定截图区域。"),
+                    QMessageBox::NoButton,
+                    this);
+    applyTopmostFlag(&box, m_alwaysOnTop->isChecked());
+    auto *resetButton = box.addButton(QStringLiteral("重新设置"), QMessageBox::AcceptRole);
+    auto *stopButton = box.addButton(QStringLiteral("停止监听"), QMessageBox::DestructiveRole);
+    box.addButton(QStringLiteral("取消"), QMessageBox::RejectRole);
+    box.exec();
+
+    if (box.clickedButton() == resetButton) {
+        beginCapture(CaptureMode::FixedRegionSetup);
+        return;
+    }
+    if (box.clickedButton() == stopButton) {
+        m_fixedCaptureEnabled = false;
+        persistOcrConfig();
+        updateGlobalHotkey();
+        showMessage(QStringLiteral("已停止固定区域监听。"));
+    }
+}
+
+void MainWindow::beginCapture(CaptureMode mode)
+{
+    m_captureMode = mode;
+    if (isMinimized()) {
+        showNormal();
+    }
+    activateWindow();
+    m_captureOverlay->beginCapture();
+}
+
+void MainWindow::handleCaptureSelection(const QRect &globalRect)
+{
+    const CaptureMode mode = m_captureMode;
+    m_captureMode = CaptureMode::None;
+
+    if (!globalRect.isValid()) {
+        showMessage(QStringLiteral("截图区域无效，请重新框选。"));
+        return;
+    }
+
+    if (mode == CaptureMode::FixedRegionSetup) {
+        m_fixedCaptureRegion = globalRect;
+        m_fixedCaptureEnabled = true;
+        persistOcrConfig();
+        if (!updateGlobalHotkey()) {
+            m_fixedCaptureEnabled = false;
+            persistOcrConfig();
+            QMessageBox box(QMessageBox::Warning,
+                            QStringLiteral("热键注册失败"),
+                            QStringLiteral("固定区域已经保存，但全局热键注册失败。请确认没有别的程序占用了 %1。").arg(m_hotkey),
+                            QMessageBox::NoButton,
+                            this);
+            applyTopmostFlag(&box, m_alwaysOnTop->isChecked());
+            box.addButton(QMessageBox::Ok);
+            box.exec();
+            return;
+        }
+        showMessage(QStringLiteral("固定区域已保存，按 %1 可重复识别。").arg(m_hotkey));
+        return;
+    }
+
+    runRecognitionForRegion(globalRect, false);
+}
+
+void MainWindow::runRecognitionForRegion(const QRect &globalRect, bool triggeredByHotkey)
+{
+    const QImage capture = captureDesktopRegion(globalRect);
+    if (capture.isNull()) {
+        showMessage(QStringLiteral("截图失败，未能获取屏幕内容。"));
+        return;
+    }
+
+    const OcrResult ocrResult = m_ocrRunner->recognize(capture);
+    if (!ocrResult.success) {
+        QMessageBox box(QMessageBox::Warning,
+                        QStringLiteral("离线识别失败"),
+                        ocrResult.errorMessage.isEmpty() ? QStringLiteral("离线 OCR 没有返回可用结果。") : ocrResult.errorMessage,
+                        QMessageBox::NoButton,
+                        this);
+        applyTopmostFlag(&box, m_alwaysOnTop->isChecked());
+        box.addButton(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    QStringList normalizedQueries;
+    for (const QString &line : ocrResult.lines) {
+        const QString normalizedLine = normalizeForMatching(line);
+        if (!normalizedLine.isEmpty() && (normalizedLine.size() > 1 || ocrResult.lines.size() == 1)) {
+            normalizedQueries.push_back(normalizedLine);
+        }
+    }
+    const QString normalizedText = normalizeForMatching(ocrResult.text);
+    if (!normalizedText.isEmpty() && !normalizedQueries.contains(normalizedText)) {
+        normalizedQueries.push_back(normalizedText);
+    }
+
+    if (normalizedQueries.isEmpty()) {
+        showMessage(triggeredByHotkey ? QStringLiteral("固定区域里没有识别到红字。") : QStringLiteral("没有识别到可用的红字内容。"));
+        return;
+    }
+
+    const ItemRecord *bestItem = nullptr;
+    double bestScore = 0.0;
+    for (const auto &item : m_store.items()) {
+        const QString normalizedCandidate = normalizeForMatching(item.name);
+        for (const QString &query : normalizedQueries) {
+            const double candidateScore = scoreCandidate(query, normalizedCandidate);
+            if (candidateScore > bestScore) {
+                bestScore = candidateScore;
+                bestItem = &item;
+            }
+        }
+    }
+
+    if (!bestItem) {
+        showMessage(QStringLiteral("物品库里没有找到接近的条目。"));
+        return;
+    }
+
+    if (bestScore >= kAutoApplyThreshold) {
+        applyItemAutoSearch(*bestItem);
+        showMessage(QStringLiteral("已识别“%1”，并自动筛到报价结果。").arg(bestItem->name));
+        return;
+    }
+
+    QMessageBox box(QMessageBox::Information,
+                    QStringLiteral("识别结果偏低"),
+                    QStringLiteral("识别文本：%1\n最像的条目：%2\n匹配分数：%3")
+                        .arg(ocrResult.text.isEmpty() ? QStringLiteral("(空)") : ocrResult.text)
+                        .arg(bestItem->name)
+                        .arg(QString::number(bestScore, 'f', 2)),
+                    QMessageBox::NoButton,
+                    this);
+    applyTopmostFlag(&box, m_alwaysOnTop->isChecked());
+    box.addButton(QMessageBox::Ok);
+    box.exec();
+}
+
+void MainWindow::applyItemAutoSearch(const ItemRecord &item)
+{
+    if (item.categoryPaths.isEmpty()) {
+        return;
+    }
+
+    const QStringList path = item.categoryPaths.first();
+    {
+        const QSignalBlocker blocker1(m_category1);
+        m_category1->setCurrentText(path.value(0));
+    }
+    refreshCategoryCombos(0);
+
+    if (!path.value(1).isEmpty()) {
+        const QSignalBlocker blocker2(m_category2);
+        m_category2->setCurrentText(path.value(1));
+    }
+    refreshCategoryCombos(1);
+
+    if (m_category3ShowsItems) {
+        const QSignalBlocker blocker3(m_category3);
+        m_category3->setCurrentText(item.name);
+    } else if (!path.value(2).isEmpty()) {
+        const QSignalBlocker blocker3(m_category3);
+        m_category3->setCurrentText(path.value(2));
+    }
+
+    refreshResults();
+    if (m_results->rowCount() > 0) {
+        m_results->selectRow(0);
+    }
+}
+
+void MainWindow::loadOcrConfig()
+{
+    const OcrConfig &config = m_store.ocrConfig();
+    m_fixedCaptureRegion = config.fixedRegion;
+    m_fixedCaptureEnabled = config.fixedRegionEnabled && config.fixedRegion.isValid();
+    m_hotkey = config.hotkey.trimmed().isEmpty() ? QStringLiteral("F8") : config.hotkey.trimmed().toUpper();
+    updateGlobalHotkey();
+}
+
+void MainWindow::persistOcrConfig()
+{
+    OcrConfig &config = m_store.ocrConfig();
+    config.fixedRegion = m_fixedCaptureRegion;
+    config.fixedRegionEnabled = m_fixedCaptureEnabled && m_fixedCaptureRegion.isValid();
+    config.hotkey = m_hotkey;
+    m_store.save();
+}
+
+bool MainWindow::updateGlobalHotkey()
+{
+    unregisterGlobalHotkey();
+
+    if (!m_fixedCaptureEnabled || !m_fixedCaptureRegion.isValid()) {
+        return true;
+    }
+
+#ifdef Q_OS_WIN
+    const UINT virtualKey = hotkeyVirtualKey(m_hotkey);
+    if (virtualKey == 0) {
+        return false;
+    }
+
+    createWinId();
+    m_hotkeyRegistered = RegisterHotKey(HWND(winId()), kOcrHotkeyId, MOD_NOREPEAT, virtualKey);
+    return m_hotkeyRegistered;
+#else
+    return false;
+#endif
+}
+
+void MainWindow::unregisterGlobalHotkey()
+{
+#ifdef Q_OS_WIN
+    if (m_hotkeyRegistered) {
+        UnregisterHotKey(HWND(winId()), kOcrHotkeyId);
+        m_hotkeyRegistered = false;
+    }
+#endif
+}
+
+bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
+{
+#ifdef Q_OS_WIN
+    Q_UNUSED(eventType);
+    MSG *nativeMessage = static_cast<MSG *>(message);
+    if (nativeMessage && nativeMessage->message == WM_HOTKEY && nativeMessage->wParam == kOcrHotkeyId) {
+        if (result) {
+            *result = 0;
+        }
+        if (m_fixedCaptureEnabled && m_fixedCaptureRegion.isValid()) {
+            QTimer::singleShot(0, this, [this] {
+                runRecognitionForRegion(m_fixedCaptureRegion, true);
+            });
+        }
+        return true;
+    }
+#else
+    Q_UNUSED(eventType);
+    Q_UNUSED(message);
+    Q_UNUSED(result);
+#endif
+    return QMainWindow::nativeEvent(eventType, message, result);
 }
 
 QStringList MainWindow::selectedCategories() const

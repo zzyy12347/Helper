@@ -8,9 +8,16 @@ ItemShopFinder_autogen/timestamp: \
 	D:/AIWork/Helper/src/DataStore.h \
 	D:/AIWork/Helper/src/MainWindow.cpp \
 	D:/AIWork/Helper/src/MainWindow.h \
+	D:/AIWork/Helper/src/OcrRunner.cpp \
+	D:/AIWork/Helper/src/OcrRunner.h \
+	D:/AIWork/Helper/src/ScreenCaptureOverlay.cpp \
+	D:/AIWork/Helper/src/ScreenCaptureOverlay.h \
 	D:/AIWork/Helper/src/main.cpp \
+	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/QByteArray \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/QJsonArray \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/QMap \
+	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/QObject \
+	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/QRect \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/QString \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/QStringList \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/QVector \
@@ -85,6 +92,7 @@ ItemShopFinder_autogen/timestamp: \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/qvarlengtharray.h \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/qvector.h \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/qversiontagging.h \
+	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtGui/QImage \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtGui/qbrush.h \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtGui/qcolor.h \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtGui/qcursor.h \
@@ -109,6 +117,7 @@ ItemShopFinder_autogen/timestamp: \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtGui/qwindowdefs.h \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtGui/qwindowdefs_win.h \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtWidgets/QMainWindow \
+	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtWidgets/QWidget \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtWidgets/qmainwindow.h \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtWidgets/qsizepolicy.h \
 	D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtWidgets/qtabwidget.h \

@@ -1,16 +1,12 @@
 # ninja log v7
-16	95	8056250496457279	ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
-16	95	8056250496457279	ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
-16	95	8056250496457279	D:/AIWork/Helper/build/ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
-16	95	8056250496457279	D:/AIWork/Helper/build/ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
-303	1708	8056248411512125	CMakeFiles/ItemShopFinder.dir/src/main.cpp.obj	8bb01a85b91c2225
-300	1923	8056248411482133	CMakeFiles/ItemShopFinder.dir/ItemShopFinder_autogen/mocs_compilation.cpp.obj	3cf99dac204bb24a
-2872	6020	8051810574522552	CMakeFiles/ItemShopFinder.dir/src/DataStore.cpp.obj	7659e9e8c66bf2af
-96	2779	8056250497257282	CMakeFiles/ItemShopFinder.dir/src/MainWindow.cpp.obj	6c64aaeecaaea2f0
-2779	2916	8056250524080223	ItemShopFinder.exe	9f2e2d0f9591e020
-257	685	8063876274132544	ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
-257	685	8063876274132544	ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
-257	685	8063876274132544	D:/AIWork/Helper/build/ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
-257	685	8063876274132544	D:/AIWork/Helper/build/ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
-686	8409	8063876278422039	CMakeFiles/ItemShopFinder.dir/src/MainWindow.cpp.obj	6c64aaeecaaea2f0
-8409	9248	8063876355650075	ItemShopFinder.exe	9f2e2d0f9591e020
+20	110	8081413121922999	ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
+20	110	8081413121922999	ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
+20	110	8081413121922999	D:/AIWork/Helper/build/ItemShopFinder_autogen/timestamp	5eeea26ec2c85122
+20	110	8081413121922999	D:/AIWork/Helper/build/ItemShopFinder_autogen/mocs_compilation.cpp	5eeea26ec2c85122
+2470	4645	8081412971406166	CMakeFiles/ItemShopFinder.dir/src/main.cpp.obj	8bb01a85b91c2225
+2467	4623	8081412971376155	CMakeFiles/ItemShopFinder.dir/ItemShopFinder_autogen/mocs_compilation.cpp.obj	3cf99dac204bb24a
+2478	5151	8081412971486189	CMakeFiles/ItemShopFinder.dir/src/DataStore.cpp.obj	7659e9e8c66bf2af
+110	4228	8081413122823007	CMakeFiles/ItemShopFinder.dir/src/MainWindow.cpp.obj	6c64aaeecaaea2f0
+4229	5965	8081413164011127	ItemShopFinder.exe	8da9f172d60da8a1
+2484	4633	8081412971546178	CMakeFiles/ItemShopFinder.dir/src/ScreenCaptureOverlay.cpp.obj	50ad993aed5f72fa
+2480	4655	8081412971506145	CMakeFiles/ItemShopFinder.dir/src/OcrRunner.cpp.obj	d89cf5d3cbf43ff1

@@ -1361,8 +1361,39 @@
                     "showcaseId": "10"
                 }
             ]
+        },
+        {
+            "categories": [
+                "家具",
+                "一级家具"
+            ],
+            "categoryPaths": [
+                [
+                    "家具",
+                    "一级家具"
+                ]
+            ],
+            "name": "榛木床",
+            "offers": [
+                {
+                    "outOfStock": false,
+                    "outOfStockCount": 0,
+                    "outOfStockMarkedAt": "",
+                    "price": 18555,
+                    "shopId": "915",
+                    "showcaseId": "1"
+                }
+            ]
         }
     ],
+    "ocrConfig": {
+        "fixedRegionEnabled": false,
+        "height": 0,
+        "hotkey": "F8",
+        "width": 0,
+        "x": 0,
+        "y": 0
+    },
     "secondCategoriesByFirst": {
         "召唤物": [
             "高级",

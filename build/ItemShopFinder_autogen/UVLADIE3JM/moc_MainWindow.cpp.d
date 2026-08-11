@@ -1,8 +1,10 @@
 D:/AIWork/Helper/build/ItemShopFinder_autogen/UVLADIE3JM/moc_MainWindow.cpp: D:/AIWork/Helper/src/MainWindow.h \
   D:/AIWork/Helper/build/ItemShopFinder_autogen/moc_predefs.h \
   D:/AIWork/Helper/src/DataStore.h \
+  D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/QByteArray \
   D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/QJsonArray \
   D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/QMap \
+  D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/QRect \
   D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/QString \
   D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/QStringList \
   D:/AIWork/_codex_build_tools/Qt/5.15.2/mingw81_64/include/QtCore/QVector \

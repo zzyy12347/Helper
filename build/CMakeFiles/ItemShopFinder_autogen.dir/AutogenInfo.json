@@ -90,6 +90,18 @@
 			"MU",
 			"UVLADIE3JM/moc_MainWindow.cpp",
 			null
+		],
+		[
+			"D:/AIWork/Helper/src/OcrRunner.h",
+			"MU",
+			"UVLADIE3JM/moc_OcrRunner.cpp",
+			null
+		],
+		[
+			"D:/AIWork/Helper/src/ScreenCaptureOverlay.h",
+			"MU",
+			"UVLADIE3JM/moc_ScreenCaptureOverlay.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -145,6 +157,8 @@
 	[
 		[ "D:/AIWork/Helper/src/DataStore.cpp", "MU", null ],
 		[ "D:/AIWork/Helper/src/MainWindow.cpp", "MU", null ],
+		[ "D:/AIWork/Helper/src/OcrRunner.cpp", "MU", null ],
+		[ "D:/AIWork/Helper/src/ScreenCaptureOverlay.cpp", "MU", null ],
 		[ "D:/AIWork/Helper/src/main.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],

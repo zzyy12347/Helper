@@ -33,6 +33,7 @@ bool DataStore::load()
 
     m_items.clear();
     m_secondCategoriesByFirst.clear();
+    m_ocrConfig = {};
 
     const auto groupedSecondCategories = document.object().value("secondCategoriesByFirst").toObject();
     for (auto it = groupedSecondCategories.begin(); it != groupedSecondCategories.end(); ++it) {
@@ -67,6 +68,17 @@ bool DataStore::load()
         if (value.isObject()) {
             m_items.push_back(itemFromJson(value.toObject()));
         }
+    }
+
+    const auto ocrConfig = document.object().value("ocrConfig").toObject();
+    m_ocrConfig.fixedRegion = QRect(ocrConfig.value("x").toInt(),
+                                    ocrConfig.value("y").toInt(),
+                                    ocrConfig.value("width").toInt(),
+                                    ocrConfig.value("height").toInt());
+    m_ocrConfig.fixedRegionEnabled = ocrConfig.value("fixedRegionEnabled").toBool(false);
+    const auto savedHotkey = ocrConfig.value("hotkey").toString().trimmed();
+    if (!savedHotkey.isEmpty()) {
+        m_ocrConfig.hotkey = savedHotkey;
     }
 
     if (m_items.isEmpty()) {
@@ -107,6 +119,15 @@ bool DataStore::save() const
     }
     root.insert("secondCategoriesByFirst", groupedSecondCategories);
 
+    QJsonObject ocrConfig;
+    ocrConfig.insert("x", m_ocrConfig.fixedRegion.x());
+    ocrConfig.insert("y", m_ocrConfig.fixedRegion.y());
+    ocrConfig.insert("width", m_ocrConfig.fixedRegion.width());
+    ocrConfig.insert("height", m_ocrConfig.fixedRegion.height());
+    ocrConfig.insert("fixedRegionEnabled", m_ocrConfig.fixedRegionEnabled);
+    ocrConfig.insert("hotkey", m_ocrConfig.hotkey);
+    root.insert("ocrConfig", ocrConfig);
+
     QFile file(m_filePath);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
         return false;
@@ -134,6 +155,16 @@ QMap<QString, QStringList> &DataStore::secondCategoriesByFirst()
 const QMap<QString, QStringList> &DataStore::secondCategoriesByFirst() const
 {
     return m_secondCategoriesByFirst;
+}
+
+OcrConfig &DataStore::ocrConfig()
+{
+    return m_ocrConfig;
+}
+
+const OcrConfig &DataStore::ocrConfig() const
+{
+    return m_ocrConfig;
 }
 
 QStringList DataStore::categoriesAtLevel(int level, const QStringList &prefix) const
